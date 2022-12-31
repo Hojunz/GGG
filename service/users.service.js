@@ -18,6 +18,21 @@ class UserService {
             updatedAt: createUserdata.updatedAt,
         }
     }
+
+    // 로그인하기
+    loginUser = async (email) => {
+        const login = await this.userRepository.loginUser(email)
+
+        return {
+            userId: login.null,
+            email: login.email,
+            nickname: login.nickname,
+            password: login.password,
+            money: login.money,
+            createdAt: login.createdAt,
+            updatedAt: login.updatedAt,
+        }
+    }
 }
 
 module.exports = UserService
