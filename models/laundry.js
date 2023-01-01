@@ -20,8 +20,9 @@ class Laundry extends Sequelize.Model{
                 allowNull: false,
             },
             price: {
-                type: Sequelize.STRING(100),
+                type: Sequelize.INTEGER,
                 allowNull: false,
+                defaultValue: 10000
             },
             status: {
                 type: Sequelize.STRING(100),

@@ -22,8 +22,9 @@ class Boss extends Sequelize.Model{
                 allowNull: false,
             },
             money: {
-                type: Sequelize.STRING(100),
+                type: Sequelize.INTEGER,
                 allowNull: false,
+                defaultValue: 100000
             },
         }, {
             sequelize,

@@ -24,7 +24,7 @@ class UserService {
         const login = await this.userRepository.loginUser(email)
 
         return {
-            userId: login.null,
+            userId: login.id,
             email: login.email,
             nickname: login.nickname,
             password: login.password,

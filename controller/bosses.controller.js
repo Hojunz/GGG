@@ -1,14 +1,14 @@
-const UserService = require('../service/users.service')
+const BossService = require('../service/bosses.service')
 const jwt = require('jsonwebtoken')
 const { secretKey, option } = require("../config/secretKey");
 
-class UsersController{
-    userService = new UserService()
+class BossesController{
+    bossService = new BossService()
 
     //회원가입입니다.~~~
-    createUser = async(req, res, next) => {
+    createBoss = async(req, res, next) => {
         try{
-            const {email, nickname, password, confirmpassword, money} = req.body
+            const {email, nickname, password, confirmpassword, phonenumber, money} = req.body
 
             //비밀번호 확인
             if (password !== confirmpassword) {
@@ -20,7 +20,7 @@ class UsersController{
                 return res.status(400).send({errorMessage:'닉네임 포함 NO'})
             }
 
-            await this.userService.createUser(email, nickname, password, money)
+            await this.bossService.createBoss(email, nickname, password, phonenumber, money)
             
             res.status(201).send({message: '회원가입에 성공하였습니다.'})
         
@@ -29,16 +29,16 @@ class UsersController{
         }
     }
     //로그인 입니다.
-    loginUser = async(req, res, next) => {
+    loginBoss = async(req, res, next) => {
         try {
             const {email, password} = req.body
-            const user = await this.userService.loginUser(email)
+            const boss = await this.bossService.loginBoss(email)
             
-            if((email !== user.email) || (password !== user.password)) {
+            if((email !== boss.email) || (password !== boss.password)) {
                 res.status(400).send({errorMessage:'이메일 또는 패스워드를 확인해주세요.'})
             }
            
-            res.send({token: jwt.sign({id: user.userId}, secretKey, option)})
+            res.send({token: jwt.sign({id: boss.bossId}, secretKey, option)})
         
         }catch(error){
             res.status(400).json({errormessage: error.message})
@@ -46,4 +46,4 @@ class UsersController{
     }
 }
 
-module.exports = UsersController;
+module.exports = BossesController;
