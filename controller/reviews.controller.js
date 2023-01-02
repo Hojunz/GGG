@@ -52,7 +52,7 @@ class ReviewsController {
             res.status(444).json({ errorMessage: error.message });
         }
     }
-    //리뷰 삭제
+    //리뷰 삭제(특정 유저만 지울 수 있게 업데이트 요망)
     deleteReview = async(req, res, next) => {
         try{
             const{reviewId} = req.params

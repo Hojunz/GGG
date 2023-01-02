@@ -26,6 +26,7 @@ class ReviewService {
     updateReview = async(id, grade, comment,) => {
         try{
             const findReview = await this.reviewRepository.findReviewById(id)
+
             if(!findReview) throw new Error("리뷰가 존재하지 않아요.")
     
             const updateReview = await this.reviewRepository.updateReview(id, grade, comment,)
@@ -36,7 +37,13 @@ class ReviewService {
         } catch (error){
             res.status(445).json({ errorMessage: error.message });
         }
+    }
+    //리뷰 삭제
+    deleteReview = async(id) => {
+        const findReview = await this.reviewRepository.findReviewById(id)
+        if(!findReview) throw new Error("리뷰가 존재하지 않아요.")
 
+        await this.reviewRepository.deleteReview(id)
     }
 }
 

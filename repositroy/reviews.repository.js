@@ -27,6 +27,12 @@ class ReviewRepository {
         }
     }
 
+    //리뷰 삭제
+    deleteReview = async(id) => {
+        const deleteReviewData = await Review.destroy({where: {id}})
+        return deleteReviewData
+    }
+
     //특정 id 찾기
     findReviewById = async(id) => {
         const review = await Review.findByPk(id)
