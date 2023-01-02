@@ -25,6 +25,7 @@ class Review extends Sequelize.Model{
 
     static associate(models) {
         models.Review.belongsTo(models.User, {foreignKey: "user_id", targetKey: "id",});
+        models.Review.belongsTo(models.Boss, {foreignKey: "boss_id", targetKey: "id",});
     }
 }
 

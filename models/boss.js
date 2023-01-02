@@ -40,6 +40,7 @@ class Boss extends Sequelize.Model{
 
     static associate(models) {
         models.Boss.hasMany(models.Laundry, {foreignKey: "boss_id", sourceKey: "id",});
+        models.Boss.hasMany(models.Review, {foreignKey: "boss_id", sourceKey: "id",});
     }
 }
 
