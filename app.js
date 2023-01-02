@@ -39,10 +39,10 @@ app.use(session({resave:false, saveUninitialized: false, secret: process.env.COO
 //라우터 연결
 app.use('/api', routes);
 
-//페이지 없을 시 에러 처리
+// 페이지 없을 시 에러 처리
 app.use((req, res, next) => {
     const error = new Error(`${req.method} ${req.url} 라우터가 없습니다.`)
-    error.status = 404
+    error.status = 405
     next(error)
 })
 app.use((err, req, res, next) => {
