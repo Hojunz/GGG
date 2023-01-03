@@ -5,6 +5,10 @@ const indexMiddleware = require('../middlewares/index')
 const ReviewsController = require('../controller/reviews.controller')
 const reviewsController = new ReviewsController()
 
+
+router.get('/reviews', reviewsController.getAllReview) //모든 리뷰 조회
+
+
 router.use(indexMiddleware, (req, res, next) => {
     next()
 })

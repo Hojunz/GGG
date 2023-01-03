@@ -1,4 +1,4 @@
-const BossRepository = require('../repositroy/bosses.repository')
+const BossRepository = require('../repository/bosses.repository')
 
 class BossService {
     bossRepository = new BossRepository()
