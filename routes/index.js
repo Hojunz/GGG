@@ -1,12 +1,18 @@
 const express = require("express");
-const router = express.Router()  
+const router = express.Router();
 
-const usersRouter = require('./users.routes')
-const bossesRouter = require('./boss.routes')
-const reviewsRouter = require('./reviews.routes')
+const cookieParser = require("cookie-parser");
+const app = express();
+app.use(cookieParser());
 
-router.use('/user', usersRouter)
-router.use('/boss', bossesRouter)
-router.use('/laundry', reviewsRouter)
+const usersRouter = require("./users.routes");
+const bossesRouter = require("./boss.routes");
+const reviewsRouter = require("./reviews.routes");
+const laundriesRouter = require("./laundries.routes");
 
-module.exports = router
+router.use("/user", usersRouter);
+router.use("/boss", bossesRouter);
+router.use("/laundry", reviewsRouter);
+router.use("/laundries", laundriesRouter);
+
+module.exports = router;
