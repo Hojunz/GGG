@@ -25,7 +25,16 @@ class ReviewsController {
             res.status(444).json({ errorMessage: error.message });
         }
     }
-    // 리뷰 조회 (지금 로그인 된 사용자것만 불러오기, 에러처리)
+
+    // 모든 리뷰 조회
+    getAllReview = async(req, res, next) => {
+        const review = await this.reviewService.findAllReview()
+
+        res.status(200).json({data:review})
+    }
+
+
+    // 유저 리뷰 조회 (지금 로그인 된 사용자것만 불러오기, 에러처리)
     getReview = async(req, res, next) => {
         const {user_id} = req.params
 
