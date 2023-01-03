@@ -26,6 +26,20 @@ class LaundriesController {
 
     res.status(201).json({ createLaundryData });
   };
+
+  // 세탁물 상태 변경
+  updateLaundry = async (req, res, next) => {
+    try{
+      const {id} = req.params
+      // const User = res.locals.user.id
+      await this.laundryService.updateLaundry(id)
+    
+      return res.status(201).send({message: '세탁물 상태가 변경되었습니다!'})
+
+    } catch(error){
+      res.status(444).json({ errorMessage: error.message });
+    }
+  }
 }
 
 module.exports = LaundriesController;
