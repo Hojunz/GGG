@@ -1,4 +1,4 @@
-const ReviewRepository = require('../repositroy/reviews.repository')
+const ReviewRepository = require('../repository/reviews.repository')
 
 class ReviewService {
     reviewRepository = new ReviewRepository()
@@ -14,7 +14,24 @@ class ReviewService {
             // user_id: createReviewData.user_id
         
     }
-    //리뷰 조회
+    //모든 리뷰 조회
+    findAllReview = async() => {
+        const allReview = await this.reviewRepository.findAllReview()
+
+        allReview.sort((a, b) => {
+            return b.createdAt - a.createdAt;
+        });
+
+        return allReview.map((review) => {
+            return{
+                grade: review.grade,
+                comment: review.comment
+            }
+        })
+    }
+
+
+    //유저리뷰 조회
     getReview = async(user_id) => {
         const findReview = await this.reviewRepository.getReview(user_id)
         // console.log(findReview)
