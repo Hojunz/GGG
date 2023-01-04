@@ -41,7 +41,7 @@ class ReviewsController {
     res.status(200).json({ data: review });
   };
 
-  //리뷰 수정 (리뷰 작성한 유저만 고칠수 있게 바꾸기)
+  //리뷰 수정
   updateReview = async (req, res, next) => {
     try {
       const { reviewId, user_id } = req.params;
@@ -61,13 +61,19 @@ class ReviewsController {
       res.status(444).json({ errorMessage: error.message });
     }
   };
-  //리뷰 삭제(특정 유저만 지울 수 있게 업데이트 요망)
+
+  //리뷰 삭제
   deleteReview = async (req, res, next) => {
     try {
-      const { reviewId } = req.params;
+      const { reviewId, user_id } = req.params;
       const User = res.locals.user.id;
 
       //에러처리
+      if (User !== user_id) {
+        res
+          .status(400)
+          .send({ errorMessage: "리뷰를 작성한 유저가 아닙니다!" });
+      }
 
       await this.reviewService.deleteReview(reviewId);
       res.status(200).send({ message: "리뷰 삭제 완료!" });

@@ -32,22 +32,21 @@ class LaundryRepository {
     return createLaundryData;
   };
 
+  //특정 세탁물 id 찾기
+  findLaundryById = async (laundryId) => {
+    const laundryData = await Laundry.findOne({ where: { id: laundryId } });
+    return laundryData;
+  };
+
   //세탁물 상태 변경
-  updateLaundry = async (id, status) => {
+  updateLaundry = async (laundryId, status, boss_id) => {
     const updateLaundryData = await Laundry.update(
-      { status },
-      { where: { id } }
+      { status, boss_id },
+      { where: { id: laundryId } }
     );
     // update({status}, {where: {id}})
     //increment({status: 1}, {where: {id}})
     return updateLaundryData;
-  };
-
-  //특정 세탁물 id 찾기
-  findLaundryById = async (id) => {
-    const laundry = await Laundry.findByPk(id);
-
-    return laundry;
   };
 
   // 전체 세탁물 조회 (사장님 전용)
@@ -57,8 +56,26 @@ class LaundryRepository {
     return laundries;
   };
 
+  deleteLaundry = async (req, res, next) => {
+    try {
+      const { laundryId, user_id } = req.params;
+      const User = res.locals.user.id;
+
+      if (User !== user_id) {
+        res
+          .status(400)
+          .send({ errorMessage: "세탁물을 신청한 유저가 아닙니다!" });
+      }
+
+      await this.reviewService.deleteReview(reviewId);
+      res.status(200).send({ message: "세탁물 삭제 완료!" });
+    } catch (error) {
+      res.status(444).json({ errorMessage: error.message });
+    }
+  };
+
   // Boss 여부 확인
-  findLaundryById = async (id) => {
+  findBossById = async (id) => {
     const boss = await Boss.findByPk(id);
     return boss;
   };

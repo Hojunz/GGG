@@ -3,13 +3,11 @@
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <body>
-      <h1><%= title %></h1>
-      <form action="/api/laundries" method="post" enctype="multipart/form-data">
-        <p>전화번호 <%= phonenumber %></p>
-        <p>주소 <%= address %></p>
-        <p>이미지 <img src="/src/<%= imagefile %>" width="300" /></p>
-        <p>요청사항 <%= comment %><</p>
-      </form>
+      <h1><%= data.image %></h1>
+      <p>전화번호 <%= data.phonenumber %></p>
+      <p>주소 <%= data.address %></p>
+      <p>이미지 <img src="/upload/<%= data.image %>" width="300" /></p>
+      <p>요청사항 <%= data.comment %></p>
     </body>
   </head>
 </html>

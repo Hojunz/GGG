@@ -5,19 +5,14 @@ const indexMiddleware = require("../middlewares/index");
 const BossesController = require("../controller/bosses.controller");
 const bossescontroller = new BossesController();
 
-router.post("/signup", bossescontroller.createBoss);
-router.post("/login", bossescontroller.loginBoss);
+router.post("/signup", bossescontroller.createBoss); // 회원가입
+router.post("/login", bossescontroller.loginBoss); // 로그인
 
 // 사용자 인증 미들웨어 추가
 router.use(indexMiddleware, (req, res, next) => {
   next();
 });
 
-//로그인 검사 (이 코드가 없어서 사장님 로그아웃 가능해서 주석 처리)
-// router.get('/me', indexMiddleware, async(req,res) => {
-//     res.json({ user: res.locals.user });
-// })
-
-router.post("/logout", bossescontroller.logoutBoss);
+router.post("/logout", bossescontroller.logoutBoss); // 로그아웃
 
 module.exports = router;
