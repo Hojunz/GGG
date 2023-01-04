@@ -33,5 +33,7 @@ const upload = multer({
 });
 
 router.post("/", upload.single("image"), laundriesController.createLaundry);
+router.patch('/:laundryId', laundriesController.updateLaundry)
+
 
 module.exports = router;

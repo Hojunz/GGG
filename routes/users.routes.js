@@ -2,10 +2,6 @@ const express = require("express");
 const router = express.Router() 
 const indexMiddleware = require('../middlewares/index') 
 
-const cookieParser = require('cookie-parser');
-const app = express();
-app.use(cookieParser());
-
 const UsersController = require('../controller/users.controller')
 const userscontroller = new UsersController()
 

@@ -22,6 +22,12 @@ class User extends Sequelize.Model{
                 allowNull: false,
                 defaultValue: 100000
             },
+            isAdmin: {
+                type: Sequelize.BOOLEAN,
+                allowNull: false,
+                defaultValue: false
+            }
+            
         }, {
             sequelize,
             timestamps: true, // createdAt, updatedAt
