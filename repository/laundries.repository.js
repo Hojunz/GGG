@@ -1,4 +1,5 @@
-const { Laundry, Boss } = require("../models");
+const { Laundry, Boss, User } = require("../models");
+const { sequelize } = require("../models")
 
 class LaundryRepository {
   // 내 세탁물만 조회하기 (회원)
@@ -31,11 +32,9 @@ class LaundryRepository {
     return createLaundryData;
   };
 
-
   //특정 세탁물 id 찾기
   findLaundryById = async (laundryId) => {
     const laundryData = await Laundry.findByPk(laundryId)
-    // console.log("리포지토링", laundryData)
 
     return laundryData;
   };
@@ -59,6 +58,27 @@ class LaundryRepository {
     const boss = await Boss.findByPk(id);
     return boss;
   };
+
+  // transactions
+  moveMoney = async(laundryId) => {
+    const t = await sequelize.transaction();
+    try {
+      const lundri = await Laundry.findOne({where: { id: laundryId }, transaction: t})
+       
+      await User.update(
+          { money: sequelize.literal(`money - ${lundri.price}`)},
+          {where: { id: lundri.user_id }, transaction: t},
+      );
+      
+      await Boss.update(
+          { money: sequelize.literal(`money + ${lundri.price}`) },
+          { where: { id: lundri.boss_id }, transaction: t },
+      );
+      await t.commit();
+    } catch (err) {
+      await t.rollback(); 
+    }
+  } 
 }
 
 module.exports = LaundryRepository;
