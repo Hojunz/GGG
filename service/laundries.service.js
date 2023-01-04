@@ -3,8 +3,9 @@ const LaundryRepository = require("../repository/laundries.repository");
 class LaundryService {
   laundryRepository = new LaundryRepository();
 
-  findMyLaundries = async () => {
-    const allLaundries = await this.laundryRepository.findAllLaundries(user_id);
+  // 내 세탁물 조회 (손님 전용)
+  findMyLaundries = async (user_id) => {
+    const allLaundries = await this.laundryRepository.findMyLaundries(user_id);
 
     allLaundries.sort((a, b) => {
       return b.createdAt - a.createdAt;
@@ -23,6 +24,7 @@ class LaundryService {
     });
   };
 
+  // 세탁물 신청 (손님 전용)
   createLaundry = async (phonenumber, address, image, comment, user_id) => {
     const createLaundryData = await this.laundryRepository.createLaundry(
       phonenumber,
@@ -43,6 +45,7 @@ class LaundryService {
     };
   };
 
+<<<<<<< HEAD
   //세탁물 상태 변경~
   updateLaundry = async(id, status) => {
       const findLaundry = await this.laundryRepository.findLaundryById(id)
@@ -65,6 +68,15 @@ class LaundryService {
 
       return updateLaundry
   }
+=======
+  // 전체 세탁물 조회 (사장님 전용)
+  findAllLaundries = async (req, res, next) => {
+    const boss = await this.laundryRepository.findLaundryById(id);
+    const laundries = await this.laundryRepository.findAllLaundries();
+
+    return laundries;
+  };
+>>>>>>> feature/laundry_status&order
 }
 
 module.exports = LaundryService;
