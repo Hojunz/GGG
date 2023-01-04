@@ -17,6 +17,8 @@ dotenv.config(); // process.env
 
 const app = express();
 app.set("port", process.env.PORT || 3000);
+
+// html 템플릿 엔진 -> ejs로 변경
 // app.set("view engine", "html");
 // nunjucks.configure("views", { express: app, watch: true });
 
@@ -24,7 +26,7 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
 sequelize
-  .sync({ force: false })
+  .sync({ force: true })
   .then(() => {
     console.log("데이터베이스 연결 성공");
   })

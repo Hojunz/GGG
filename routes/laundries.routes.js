@@ -37,8 +37,9 @@ router.get("/:user_id", laundriesController.findMyLaundries);
 
 // 세탁물 신청 (이미지 업로드 미들웨어 포함)
 router.post("/", upload.single("image"), laundriesController.createLaundry);
-router.patch('/:laundryId', laundriesController.updateLaundry)
 
+// 세탁물 변경
+router.patch("/:laundryId", laundriesController.updateLaundry);
 
 // 전체 세탁물 조회 (사장님)
 router.get("/", laundriesController.findAllLaundries);
