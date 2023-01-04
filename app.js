@@ -19,9 +19,8 @@ const app = express();
 app.set("port", process.env.PORT || 3000);
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
-
 sequelize
-  .sync({ force: true })
+  .sync({ force: false })
   .then(() => {
     console.log("데이터베이스 연결 성공");
   })
@@ -71,51 +70,6 @@ app.get('/', function (req, res) {
 });
 
 
-
-const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
-
-app.use(session({secret : '비밀코드', resave : true, saveUninitialized: false}));
-app.use(passport.initialize());
-app.use(passport.session());
-
 app.get('/login', function(req, res) {
   res.render('login.ejs')
 });
-
-
-app.post('/login', passport.authenticate('local', {
-  failureRedirect : '/fail'
-}), function(req, res) {
-  console.log('잘 되니')
-  res.redirect('/')
-});
-
-
-passport.use(new LocalStrategy({
-    usernameField: 'email',
-    passwordField: 'password',
-    session: true,
-    passReqToCallback: false,
-  }, function (입력한이메일, 입력한비번, done) {
-    console.log(입력한이메일, 입력한비번);
-    sequelize.User.findOne({ email: 입력한이메일 }, function (err, result) {
-      if (err) return done(err)
-  
-      if (!result) return done(null, false, { message: '존재하지않는 아이디 입니다' })
-      if (입력한비번 == result.password) {
-        return done(null, result)
-      } else {
-        return done(null, false, { message: '비밀번호가 틀렸습니다' })
-      }
-    })
-  }));
-
-
-  passport.serializeUser(function (user, done) {
-    done(null, user.email)
-  });
-  
-  passport.deserializeUser(function (아이디, done) {
-    done(null, {})
-  }); 
