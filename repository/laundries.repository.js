@@ -1,5 +1,4 @@
-const { Laundry } = require("../models");
-const Boss = require("../models/boss");
+const { Laundry, Boss } = require("../models");
 
 class LaundryRepository {
   // 내 세탁물만 조회하기 (회원)
@@ -32,22 +31,20 @@ class LaundryRepository {
     return createLaundryData;
   };
 
-  //세탁물 상태 변경
-  updateLaundry = async (id, status) => {
-    const updateLaundryData = await Laundry.update(
-      { status },
-      { where: { id } }
-    );
-    // update({status}, {where: {id}})
-    //increment({status: 1}, {where: {id}})
-    return updateLaundryData;
-  };
 
   //특정 세탁물 id 찾기
-  findLaundryById = async (id) => {
-    const laundry = await Laundry.findByPk(id);
+  findLaundryById = async (laundryId) => {
+    const laundryData = await Laundry.findByPk(laundryId)
+    // console.log("리포지토링", laundryData)
 
-    return laundry;
+    return laundryData;
+  };
+
+  //세탁물 상태 변경
+  updateLaundry = async (findLaundry) => {
+    const updateLaundryData = await findLaundry.save()
+   
+    return updateLaundryData;
   };
 
   // 전체 세탁물 조회 (사장님 전용)
@@ -58,7 +55,7 @@ class LaundryRepository {
   };
 
   // Boss 여부 확인
-  findLaundryById = async (id) => {
+  findBossById = async (id) => {
     const boss = await Boss.findByPk(id);
     return boss;
   };

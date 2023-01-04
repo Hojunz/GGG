@@ -40,7 +40,7 @@ class UsersController {
       }
 
       // res.send({token: jwt.sign({id: user.userId}, secretKey, option)})
-      const token = jwt.sign({ id: user.userId }, secretKey, option);
+      const token = jwt.sign({ id: user.userId, isAdmin: user.isAdmin }, secretKey, option);
 
       res.cookie("x_auth", token, {
         httpOnly: true,

@@ -2,8 +2,8 @@ const {Boss} = require('../models')
 
 class BossRepository {
     //회원가입 입니다
-    createBoss = async (email, nickname, password, phonenumber, money) => {
-        const createBossdata = await Boss.create({email, nickname, password, phonenumber, money})
+    createBoss = async (email, nickname, password, phonenumber, money, isAdmin) => {
+        const createBossdata = await Boss.create({email, nickname, password, phonenumber, money, isAdmin})
         return createBossdata
     }
     // 로그인 입니다
