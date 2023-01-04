@@ -6,14 +6,14 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.104.2">
-    <title>희희세탁 로그인</title>
+    <title>희희세탁 회원가입 체크</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/heroes/">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
-
 </head>
+
 <style>
     body {
     color: rgb(0, 0, 0);
@@ -26,7 +26,11 @@
     text-align: center;
     }
 
-    .signup {
+    /* #PleaseSignUp {
+        font-size: 150%;
+    } */
+
+    .backlogin {
         margin-top: 11px;
         color: black;
     }
@@ -41,7 +45,8 @@
     }
 
     #homeimage {
-        width: 40%;
+        width: 35%;
+        margin-top: 8%;
         margin-bottom: 2%;
     }
 
@@ -73,34 +78,35 @@
         text-decoration: none;
     }
 
-    #login_confirm {
+    #confirms {
         margin: 0px;
     }
-</style>
 
+</style>
 <body>
     <a href="/">희희세탁</a>
-    <br>
-    <form method="POST" id="login" action="">
-        <h1>Please login</h1>
-        <div class="form-floating1">
-            <input type="id" class="form-control" id="floatingInput" name="email" placeholder="아이디">
-            <label for="floatingInput"></label>
-        </div>
-        <div class="form-floating2">
-            <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="비밀번호">
-            <label for="floatingPassword"></label>
-        </div>
-        <button onclick="confirmInput()" class="w-100 btn btn-lg btn-primary" type="submit">로그인</button>
-        <a href="/signupcheck">
-            <p class="signupcheck">Sign Up</p>
-        </a>
 
+    <form method="POST" id="signupForm" action="" >
+    <h1 id="PleaseSignUp">회원가입 체크</h1>
+    <button onclick="location.href='/signupguest'" class="w-100 btn btn-lg btn-primary" type="button">고객</button>
+    <p> </p>
+    <button onclick="location.href='/signupowner'" class="w-100 btn btn-lg btn-primary" type="button">점주</button>
     </form>
 
-        <p id="heeheelaundry" class="mt-5 mb-3 text-muted">&copy;희희세탁</p>
-
+    <a href="/login">
+        <p class="backlogin">Back Login</p>
+    </a>
+    <!-- <p id="confirms">{{confirm_id_name_pw}}
+        {{confirm_id_msg}}
+        {{confirm_name_msg}}
+        {{confirm_pw_msg}}
+        {{already_name_msg}}
+        {{already_id_msg}}
+        {{confirm_pw_c_msg}}
+    </p> -->
+    <p class="mt-5 mb-3 text-muted" id="heeheelaundry">&copy;희희세탁</p>
 </body>
+
     <script 
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" 
     integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" 
