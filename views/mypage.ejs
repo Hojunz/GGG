@@ -1,12 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>손님 마이페이지</title>
-</head>
-<body>
-    <h1>손님 마이페이지</h1>
-</body>
+<html lang="ko">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <body>
+      <h1><%= title %></h1>
+      <form action="/api/laundries" method="post" enctype="multipart/form-data">
+        <p>전화번호 <%= phonenumber %></p>
+        <p>주소 <%= address %></p>
+        <p>이미지 <img src="/src/<%= imagefile %>" width="300" /></p>
+        <p>요청사항 <%= comment %><</p>
+      </form>
+    </body>
+  </head>
 </html>
