@@ -32,7 +32,7 @@ sequelize
 app.use(morgan("dev"));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser(process.env.COOKIE_SECRET));
 app.use(
   session({
@@ -62,3 +62,60 @@ app.use("/api", routes);
 app.listen(app.get("port"), () => {
   console.log(app.get("port"), "번 포트에서 대기중");
 });
+
+
+
+
+app.get('/', function (req, res) {
+  res.sendFile(__dirname + '/index.html');
+});
+
+
+
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+
+app.use(session({secret : '비밀코드', resave : true, saveUninitialized: false}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.get('/login', function(req, res) {
+  res.render('login.ejs')
+});
+
+
+app.post('/login', passport.authenticate('local', {
+  failureRedirect : '/fail'
+}), function(req, res) {
+  console.log('잘 되니')
+  res.redirect('/')
+});
+
+
+passport.use(new LocalStrategy({
+    usernameField: 'email',
+    passwordField: 'password',
+    session: true,
+    passReqToCallback: false,
+  }, function (입력한이메일, 입력한비번, done) {
+    console.log(입력한이메일, 입력한비번);
+    sequelize.User.findOne({ email: 입력한이메일 }, function (err, result) {
+      if (err) return done(err)
+  
+      if (!result) return done(null, false, { message: '존재하지않는 아이디 입니다' })
+      if (입력한비번 == result.password) {
+        return done(null, result)
+      } else {
+        return done(null, false, { message: '비밀번호가 틀렸습니다' })
+      }
+    })
+  }));
+
+
+  passport.serializeUser(function (user, done) {
+    done(null, user.email)
+  });
+  
+  passport.deserializeUser(function (아이디, done) {
+    done(null, {})
+  }); 
