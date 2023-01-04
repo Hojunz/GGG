@@ -17,8 +17,10 @@ dotenv.config(); // process.env
 
 const app = express();
 app.set("port", process.env.PORT || 3000);
-app.set("view engine", "html");
-nunjucks.configure("views", { express: app, watch: true });
+// app.set("view engine", "html");
+// nunjucks.configure("views", { express: app, watch: true });
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
 
 sequelize
   .sync({ force: false })
@@ -47,17 +49,17 @@ app.use(
 app.use("/api", routes);
 
 // 페이지 없을 시 에러 처리
-app.use((req, res, next) => {
-  const error = new Error(`${req.method} ${req.url} 라우터가 없습니다.`);
-  error.status = 405;
-  next(error);
-});
-app.use((err, req, res, next) => {
-  res.locals.message = err.message;
-  res.locals.error = process.env.NODE_ENV !== "production" ? err : {}; //에러로그 서비스에 넘김
-  res.status(err.status || 500);
-  res.render("error");
-});
+// app.use((req, res, next) => {
+//   const error = new Error(`${req.method} ${req.url} 라우터가 없습니다.`);
+//   error.status = 405;
+//   next(error);
+// });
+// app.use((err, req, res, next) => {
+//   res.locals.message = err.message;
+//   res.locals.error = process.env.NODE_ENV !== "production" ? err : {}; //에러로그 서비스에 넘김
+//   res.status(err.status || 500);
+//   res.render("error");
+// });
 
 app.listen(app.get("port"), () => {
   console.log(app.get("port"), "번 포트에서 대기중");
