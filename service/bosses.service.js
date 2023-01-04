@@ -4,13 +4,15 @@ class BossService {
   bossRepository = new BossRepository();
 
   // 유저 생성
-  createBoss = async (email, nickname, password, phonenumber, money) => {
+  createBoss = async (email, nickname, password, phonenumber, money, isAdmin) => {
     const createBossdata = await this.bossRepository.createBoss(
       email,
       nickname,
       password,
       phonenumber,
-      money
+      money,
+      isAdmin,
+      phonenumber,
     );
 
     return {
@@ -20,6 +22,7 @@ class BossService {
       password: createBossdata.password,
       phonenumber: createBossdata.phonenumber,
       money: createBossdata.money,
+      isAdmin: createBossdata.isAdmin,
       createdAt: createBossdata.createdAt,
       updatedAt: createBossdata.updatedAt,
     };

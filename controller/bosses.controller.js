@@ -8,8 +8,7 @@ class BossesController {
   //회원가입입니다.~~~
   createBoss = async (req, res, next) => {
     try {
-      const { email, nickname, password, confirmpassword, phonenumber, money } =
-        req.body;
+      const { email, nickname, password, confirmpassword, phonenumber, money, isAdmin} = req.body;
 
       //비밀번호 확인
       if (password !== confirmpassword) {
@@ -17,17 +16,11 @@ class BossesController {
         return;
       }
       // 닉네임 포함여부
-      if (password.includes(nickname) == true) {
-        return res.status(400).send({ errorMessage: "닉네임 포함 NO" });
-      }
+      // if (password.includes(nickname) == true) {
+      //   return res.status(400).send({ errorMessage: "닉네임 포함 NO" });
+      // }
 
-      await this.bossService.createBoss(
-        email,
-        nickname,
-        password,
-        phonenumber,
-        money
-      );
+      await this.bossService.createBoss(email, nickname, password, phonenumber, money, isAdmin);
 
       res.status(201).send({ message: "회원가입에 성공하였습니다." });
     } catch (error) {
@@ -47,7 +40,7 @@ class BossesController {
       }
 
       // res.send({token: jwt.sign({id: user.userId}, secretKey, option)})
-      const token = jwt.sign({ id: boss.bossId }, secretKey, option);
+      const token = jwt.sign({ id: boss.bossId, isAdmin: boss.isAdmin }, secretKey, option);
 
       res.cookie("x_auth", token, {
         httpOnly: true,
