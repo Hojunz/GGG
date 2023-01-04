@@ -31,12 +31,12 @@ class LaundriesController {
   updateLaundry = async (req, res, next) => {
     try {
       const { laundryId } = req.params;
-      const bossId = res.locals.user.id;
-      const isAdmin = res.locals.user.isAdmin;
-      console.log('보스:', bossId, '관리자? : ', isAdmin)
+      const bossId = res.locals.boss.id;
+      const isAdmin = res.locals.boss.isAdmin;
+
       await this.laundryService.updateLaundry(laundryId, bossId, isAdmin);
 
-      return res.status(201).send({ message: "세탁물 상태가 변경되었습니다!" });
+      res.status(201).send({ message: "세탁물 상태가 변경되었습니다!" });
     } catch (error) {
       res.status(444).json({ errorMessage: error.message });
     }

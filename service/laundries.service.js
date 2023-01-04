@@ -49,21 +49,18 @@ class LaundryService {
   updateLaundry = async (laundryId, bossId, isAdmin) => {
     try {
         const findLaundry = await this.laundryRepository.findLaundryById(laundryId);
-        // console.log('이거에요 서비스', findLaundry)
+ 
         if (!findLaundry) throw new Error("세탁물이 존재하지 않아요.");
 
         if(!isAdmin) {
           return {errormessage: "권한이 없습니다."}
         }
     
-        // const Laundryupdate = await this.laundryRepository.findLaundryById(laundryId);
-        // console.log(Laundryupdate)
-    
         if (findLaundry.status === '대기중') {
           findLaundry.status = '접수완료'
           findLaundry.boss_id = bossId
           await this.laundryRepository.updateLaundry(findLaundry);
-          
+
           return {message: "접수가 완료되었습니다"}
         }
         if (findLaundry.status === '접수완료') {
@@ -76,17 +73,17 @@ class LaundryService {
           findLaundry.status = '배송중'
           await this.laundryRepository.updateLaundry(findLaundry);
     
-          return {message: "배송중입니다."}
+          return {message: "배송중 입니다."}
         }
-        if (findLaundry.status === '수거완료') {
+        if (findLaundry.status === '배송중') {
           findLaundry.status = '배송완료'
           await this.laundryRepository.updateLaundry(findLaundry);
     
           return {message: "배송 완료"}
         }
+        
+        return {errormessage: "상태변경이 더이상 불가능합니다."};
     
-        return {message: "상태변경이 더이상 불가능합니다."};
-
       } catch(err) {
         console.log(err)
         return {errormessage : "서비스 오류"}

@@ -42,8 +42,7 @@ class LaundryRepository {
 
   //세탁물 상태 변경
   updateLaundry = async (findLaundry) => {
-    const updateLaundryData = await Laundry.save(findLaundry)
-    //update({ status, boss_id },{ where: { id: laundryId } });
+    const updateLaundryData = await findLaundry.save()
    
     return updateLaundryData;
   };

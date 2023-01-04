@@ -1,6 +1,6 @@
 const BossService = require("../service/bosses.service");
 const jwt = require("jsonwebtoken");
-const { secretKey, option } = require("../config/secretKey");
+const { secretKey2, option } = require("../config/secretKey");
 
 class BossesController {
   bossService = new BossService();
@@ -8,7 +8,7 @@ class BossesController {
   //회원가입입니다.~~~
   createBoss = async (req, res, next) => {
     try {
-      const { email, nickname, password, confirmpassword, phonenumber, money, isAdmin} = req.body;
+      const { email, nickname, password, confirmpassword, phonenumber} = req.body;
 
       //비밀번호 확인
       if (password !== confirmpassword) {
@@ -20,7 +20,7 @@ class BossesController {
       //   return res.status(400).send({ errorMessage: "닉네임 포함 NO" });
       // }
 
-      await this.bossService.createBoss(email, nickname, password, phonenumber, money, isAdmin);
+      await this.bossService.createBoss(email, nickname, password, phonenumber);
 
       res.status(201).send({ message: "회원가입에 성공하였습니다." });
     } catch (error) {
@@ -40,7 +40,7 @@ class BossesController {
       }
 
       // res.send({token: jwt.sign({id: user.userId}, secretKey, option)})
-      const token = jwt.sign({ id: boss.bossId, isAdmin: boss.isAdmin }, secretKey, option);
+      const token = jwt.sign({ id: boss.id, isAdmin: boss.isAdmin }, secretKey2, option);
 
       res.cookie("x_auth", token, {
         httpOnly: true,

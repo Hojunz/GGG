@@ -1,11 +1,7 @@
 const Sequelize = require('sequelize')
 
-// const User = require('./user')
-// const Post = require('./post')
-// const Hashtag = require('./hashtag')
-const fs = require('fs') // 주석처리한거 대신
-const path = require('path') // 주석처리한거 대신
-
+const fs = require('fs') 
+const path = require('path') 
 
 const env = process.env.NODE_ENV || 'development'
 const config = require('../config/config.json')[env]
