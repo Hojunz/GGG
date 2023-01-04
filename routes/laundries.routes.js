@@ -7,17 +7,17 @@ const indexMiddleware = require("../middlewares/index");
 const LaundriesController = require("../controller/laundries.controller");
 const laundriesController = new LaundriesController();
 
+// 로그인 인증 미들웨어
 router.use(indexMiddleware, (req, res, next) => {
   next();
 });
 
+// 세탁물 신청 폼
 router.get("/order", async (req, res) => {
   res.render("order.ejs", { title: "세탁물 신청하기" });
 });
 
-router.get("/", laundriesController.findMyLaundries);
-
-// multer setting
+// multer setting (세탁물 이미지 업로드 기능)
 const upload = multer({
   storage: multer.diskStorage({
     // set a localstorage destination
@@ -32,6 +32,16 @@ const upload = multer({
   }),
 });
 
+// 내 세탁물 조회 (손님)
+router.get("/:user_id", laundriesController.findMyLaundries);
+
+// 세탁물 신청 (이미지 업로드 미들웨어 포함)
 router.post("/", upload.single("image"), laundriesController.createLaundry);
+
+// 세탁물 변경
+router.patch("/:laundryId", laundriesController.updateLaundry);
+
+// 전체 세탁물 조회 (사장님)
+router.get("/", laundriesController.findAllLaundries);
 
 module.exports = router;
