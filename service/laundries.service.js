@@ -48,11 +48,10 @@ class LaundryService {
       const findLaundry = await this.laundryRepository.findLaundryById(id)
       if(!findLaundry) throw new Error("세탁물이 존재하지 않아요.");
       
-      if(findLaundry.status >= 4) throw new Error("상태변경 불가")
-      const updateLaundry = await this.laundryRepository.updateLaundry(id)
 
+     await this.laundryRepository.updateLaundry(id)
 
-      // const updateLaundry = await this.laundryRepository.findLaundryById(id)
+     const updateLaundry = await this.laundryRepository.findLaundryById(id)
 
       // if (updateLaundry.status === '0') {
       //   return updateLaundry.status = '1'

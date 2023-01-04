@@ -28,7 +28,7 @@ class Laundry extends Sequelize.Model {
         status: {
           type: Sequelize.STRING(100),
           allowNull: false,
-          defaultValue: 0,
+          defaultValue: '대기중',
         },
       },
       {

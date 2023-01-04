@@ -8,7 +8,6 @@ class LaundryRepository {
   };
 
   createLaundry = async (
-    nickname,
     phonenumber,
     address,
     image,
@@ -16,7 +15,6 @@ class LaundryRepository {
     user_id
   ) => {
     const createLaundryData = await Laundry.create({
-      nickname,
       phonenumber,
       address,
       image,
@@ -28,8 +26,8 @@ class LaundryRepository {
   };
 
   //세탁물 상태 변경
-  updateLaundry = async(id) => {
-    const updateLaundryData = await Laundry.increment({status: 1}, {where: {id}})
+  updateLaundry = async(id ,status) => {
+    const updateLaundryData = await Laundry.update({status}, {where: {id}})
     // update({status}, {where: {id}})
     //increment({status: 1}, {where: {id}})
     return updateLaundryData
