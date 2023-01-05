@@ -1,137 +1,177 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.104.2">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta
+      name="author"
+      content="Mark Otto, Jacob Thornton, and Bootstrap contributors"
+    />
+    <meta name="generator" content="Hugo 0.104.2" />
     <title>희희세탁 로그인</title>
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/heroes/">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+    <link
+      rel="canonical"
+      href="https://getbootstrap.com/docs/5.2/examples/heroes/"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap"
+      rel="stylesheet"
+    />
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
-
-</head>
-<style>
+  </head>
+  <style>
     body {
-    color: rgb(0, 0, 0);
-    background-color: rgb(255, 255, 255);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    text-align: center;
+      color: rgb(0, 0, 0);
+      background-color: rgb(255, 255, 255);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      text-align: center;
     }
 
     .signup {
-        font-weight: 700;
-        margin-top: 11px;
-        color: black;
+      font-weight: 700;
+      margin-top: 11px;
+      color: black;
     }
 
     .form-floating1 {
-        margin-top: 15px;
-        color: black;
+      margin-top: 15px;
+      color: black;
     }
 
     .form-floating2 {
-        color: black;
+      color: black;
     }
 
     #laundryicon {
+<<<<<<< HEAD
+      width: 12%;
+      margin-top: 12px;
+      margin-bottom: 7px;
+=======
         width: 12%;
         margin-top: 20px;
         margin-bottom: 7px;
+>>>>>>> 80c58362cd792b89ddaf4c472b56a6d8da17c96a
     }
 
     #laundryicon {
-        transition: all 0.2s linear;
+      transition: all 0.2s linear;
     }
 
     #laundryicon:hover {
-        transform: scale(1.1);
+      transform: scale(1.1);
     }
 
     a:link {
-        color: rgb(0, 0, 0);
-        text-decoration: none;
+      color: rgb(0, 0, 0);
+      text-decoration: none;
     }
 
     a:visited {
-        color: rgb(0, 0, 0);
-        text-decoration: none;
+      color: rgb(0, 0, 0);
+      text-decoration: none;
     }
 
     a:hover {
-        color: rgb(0, 66, 164);
+      color: rgb(0, 66, 164);
     }
 
     a:active {
-        color: rgb(0, 1, 9);
-        text-decoration: none;
+      color: rgb(0, 1, 9);
+      text-decoration: none;
     }
 
     #login_confirm {
-        margin: 0px;
+      margin: 0px;
     }
 
     #bg-video {
-        position: fixed; right: 0; bottom: 0; 
-        min-width: 100%; min-height: 100%;
-        width: 90%; height: auto; z-index: -100;
-        background: url(polina.jpg) no-repeat;
-        background-size: cover;
-        opacity: 0.25;
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      min-width: 100%;
+      min-height: 100%;
+      width: 90%;
+      height: auto;
+      z-index: -100;
+      background: url(polina.jpg) no-repeat;
+      background-size: cover;
+      opacity: 0.25;
     }
 
     #checkbox {
-        padding: 0px;
+      padding: 0px;
     }
 
     #bossOrUser {
-        font-weight: 700;
-        font-size: 20px;
+      font-weight: 700;
+      font-size: 20px;
     }
+  </style>
 
-</style>
-
-<body>
+  <body>
     <video src="/homevideo2" id="bg-video" autoplay muted loop></video>
-    <img id="laundryicon" src="/laundryicon" onclick="location.href='/'">
-    <form method="POST" id="login" action="">
-        <h1>Please login</h1>
-        <div class="form-floating1">
-            <input type="id" class="form-control" id="floatingInput" name="email" placeholder="아이디">
-            <label for="floatingInput"></label>
-        </div>
-        <div class="form-floating2">
-            <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="비밀번호">
-            <label for="floatingPassword"></label>
-        </div>
-        <button class="w-100 btn btn-lg btn-primary" type="submit">로그인</button>
-        <a href="/signup">
+    <img id="laundryicon" src="/laundryicon" onclick="location.href='/'" />
+    <form method="POST" id="login" action="/api/user/login">
+      <h1>Please login</h1>
+      <div class="form-floating1">
+        <input
+          type="id"
+          class="form-control"
+          id="floatingInput"
+          name="email"
+          placeholder="이메일"
+        />
+        <label for="floatingInput"></label>
+      </div>
+      <div class="form-floating2">
+        <input
+          type="password"
+          class="form-control"
+          id="floatingPassword"
+          name="password"
+          placeholder="비밀번호"
+        />
+        <label for="floatingPassword"></label>
+      </div>
+      <button class="w-100 btn btn-lg btn-primary" type="submit">로그인</button>
+      <a href="/api/user/signup">
         <p class="signup">Sign Up</p>
-        </a>
+      </a>
     </form>
 
     <!-- 하단  -->
     <p id="bossOrUser">손님 로그인 페이지입니다</p>
     <div id="checkbox" class="form-check">
-    <button type="button" class="btn btn-primary btn-sm" onclick="location.href='/loginboss'" >사장님으로 로그인하기</button>
+      <button
+        type="button"
+        class="btn btn-primary btn-sm"
+        onclick="location.href='/loginboss'"
+      >
+        사장님으로 로그인하기
+      </button>
     </div>
-    <br>
+    <br />
     <p id="heeheelaundry" class="mt-5 mb-3 text-muted">&copy;희희세탁</p>
     <!-- 하단  -->
+  </body>
 
-</body>
-
-<script 
-src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" 
-integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" 
-crossorigin="anonymous">
-</script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+    crossorigin="anonymous"
+  ></script>
 </html>

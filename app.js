@@ -8,7 +8,7 @@ const dotenv = require("dotenv");
 const jwt = require("jsonwebtoken");
 const { readSync } = require("fs");
 const { sequelize } = require("./models");
-const fs       = require('fs')
+const fs = require("fs");
 
 const routes = require("./routes");
 
@@ -47,64 +47,65 @@ app.use(
 );
 
 //-------------------프론트쪽 임시구역-------------------------------------------
-//-------------------프론트쪽 임시구역-------------------------------------------
-app.get('/', (req, res) => {
-  res.render('index')
+app.get("/", (req, res) => {
+  res.render("index");
 });
 
-app.get('/homeimg', (req, res) => {
-  fs.readFile(__dirname + '/public/images/homePng4.png', (err, data) => {
+app.get("/homeimg", (req, res) => {
+  fs.readFile(__dirname + "/public/images/homePng4.png", (err, data) => {
     if (err) {
-      return res.send('Error Occured');
+      return res.send("Error Occured");
     }
-    res.writeHead(200, {'Content-Type': 'image/png'});
+    res.writeHead(200, { "Content-Type": "image/png" });
     res.end(data);
   });
 });
 
 //----------영상, 이미지--------------------------
-app.get('/laundryicon', (req, res) => {
-  fs.readFile(__dirname + '/public/images/laundryicon2.png', (err, data) => {
+app.get("/laundryicon", (req, res) => {
+  fs.readFile(__dirname + "/public/images/laundryicon2.png", (err, data) => {
     if (err) {
-      return res.send('Error Occured');
+      return res.send("Error Occured");
     }
-    res.writeHead(200, {'Content-Type': 'image/png'});
+    res.writeHead(200, { "Content-Type": "image/png" });
     res.end(data);
   });
 });
 
 // 빨래신청 예시 이미지
-app.get('/laundryimage', (req, res) => {
-  fs.readFile(__dirname + '/public/images/laundry3.jpg', (err, data) => {
+app.get("/laundryimage", (req, res) => {
+  fs.readFile(__dirname + "/public/images/laundry3.jpg", (err, data) => {
     if (err) {
-      return res.send('Error Occured');
+      return res.send("Error Occured");
     }
-    res.writeHead(200, {'Content-Type': 'image/jpg'});
+    res.writeHead(200, { "Content-Type": "image/jpg" });
     res.end(data);
   });
 });
 
-app.get('/homevideo', (req, res) => {
-  fs.readFile(__dirname + '/public/images/video.mp4', (err, data) => {
+app.get("/homevideo", (req, res) => {
+  fs.readFile(__dirname + "/public/images/video.mp4", (err, data) => {
     if (err) {
-      return res.send('Error Occured');
+      return res.send("Error Occured");
     }
-    res.writeHead(200, {'Content-Type': 'video/mp4'});
+    res.writeHead(200, { "Content-Type": "video/mp4" });
     res.end(data);
   });
 });
 
-app.get('/homevideo2', (req, res) => {
-  fs.readFile(__dirname + '/public/images/video2.mp4', (err, data) => {
+app.get("/homevideo2", (req, res) => {
+  fs.readFile(__dirname + "/public/images/video2.mp4", (err, data) => {
     if (err) {
-      return res.send('Error Occured');
+      return res.send("Error Occured");
     }
-    res.writeHead(200, {'Content-Type': 'video/mp4'});
+    res.writeHead(200, { "Content-Type": "video/mp4" });
     res.end(data);
   });
 });
 //----------영상, 이미지--------------------------
 
+<<<<<<< HEAD
+=======
 app.get('/login', (req, res) => {
   res.render('login');
 })
@@ -147,6 +148,7 @@ app.get('/bossreviews', (req, res) => {
 //-------------------프론트쪽 임시구역-------------------------------------------
 //-------------------프론트쪽 임시구역-------------------------------------------
 
+>>>>>>> 80c58362cd792b89ddaf4c472b56a6d8da17c96a
 //라우터 연결
 app.use("/api", routes);
 
