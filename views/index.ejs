@@ -88,6 +88,7 @@
         justify-content: center;
         flex-direction: column;
         height: 820px;
+        margin-top: 10PX;
       }
       
       #bgcolor2 {
@@ -105,13 +106,11 @@
         align-items: center;
         justify-content: center;
         flex-direction: row;
-        /* margin-bottom: 10%; */
       }
 
       #homeimg {
         margin-top: 5%;
         margin-bottom: 10%;
-        /* margin-right: 10%; */
         width: 400px;
         height: 400px;
         transition: width 0.2s ease-in-out, height 0.2s ease-in-out;
@@ -127,12 +126,18 @@
         transition: font-size 0.2s ease-in-out;
       }
 
-      #lead2-1:hover {
-        font-size: 330%;
+      #lead2-1-1 {
+        margin-left: 35%;
+        transition: font-size 0.2s ease-in-out;
+      }
+
+      #lead2-1-1:hover {
+        font-size: 450%;
       }
 
       #lead2-2 {
         margin-left: 35%;
+        font-size: 150%;
       }
 
       #title {
@@ -151,9 +156,7 @@
 
       #title-button {
         margin-bottom: 20%;
-        /* offset-x | offset-y | blur-radius | spread-radius | color */
         box-shadow: 3px 3px 15px 1px rgba(0, 0, 0, 0.3);
-        /* box-shadow: 5px 5px 30px 10px rgb(135, 135, 135); */
       }
      
 
@@ -166,15 +169,12 @@
         transition: font-size 0.2s ease-in-out;
       }
 
-      /* #footer-title:hover {
-        font-size: 330%;
-      } */
-
       #footer-button:hover {
         background-color: rgb(0, 0, 235);
       }
 
       #bg-box {
+        padding-right: 5%;
         padding-left: 0px;
       }
       
@@ -185,34 +185,16 @@
 
   <body>
 <main>
-  <!-- 헤더 -->
-  <!-- <nav class="navbar bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">희희세탁</a>
-      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-        <button class="btn btn-primary me-md-2" type="button">로그인</button>
-        <button class="btn btn-primary" type="button">Button</button>
-      </div>
-    </div>
-  </nav> -->
-  <!-- 헤더 -->
 
   <div class="top">
       <video src="/homevideo" id="bg-video" autoplay muted loop></video>
-      <!-- <img class="d-block mx-auto mb-4" src="homeicon" alt="" width="72" height="57"> -->
-      <h1 id="title" class="display-1 fw-bold">희희세탁</h1>
-      <p id="title-contents" class="lead mb-4 fw-bold">접수부터 수거, 세탁, 제공까지 우리동네 세탁 맛집을 찾아보세요</p>
+      <h1 id="title" class="display-1 fw-bold">"희희세탁"</h1>
+      <p id="title-contents" class="lead mb-4 fw-bold">접수부터 수거, 세탁, 배송까지! 우리동네 세탁 맛집을 찾아보세요</p>
       <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-      <button onclick="location.href='postlaundry'" id="title-button" type="button" class="btn btn-primary btn-lg px-4 gap-3">서비스 이용해보기</button>
-      <button id="title-button" type="button" class="btn btn-primary btn-lg px-3 gap-3">리뷰 보러가기</button>
-      <!-- <button type="button" class="btn btn-outline-secondary btn-lg px-4">리뷰 보러가기</button> -->
-      <!-- <button id="review-button" type="button" class="btn btn-secondary btn-lg">리뷰 보러가기</button> -->
-      <!-- <button type="button" class="btn btn-secondary">Secondary</button> -->
+      <button onclick="location.href='/login'" id="title-button" type="button" class="btn btn-primary btn-lg px-4 gap-3">서비스 이용해보기</button>
+      <button id="title-button" type="button" class="btn btn-primary btn-lg px-3 gap-3" onclick="location.href='/signup'">회원가입</button>
       </div>
   </div>
-
-
-  <!-- <div class="b-example-divider"></div> -->
 
   <div id="bgcolor2">
       <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
@@ -220,7 +202,8 @@
       <img src="/homeimg" id="homeimg" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
       </div>
       <div class="col-lg-6">
-      <h1 class="display-5 fw-bold lh-3 mb-3" id="lead2-1">세탁은 믿을수 있는 전문가에게!</h1>
+      <h1 class="display-3 fw-bold lh-3 mb-3" id="lead2-1">세탁은 믿을 수 있는</h1>
+      <h1 class="display-3 fw-bold lh-3 mb-3" id="lead2-1-1">"전문가"에게!</h1>
       <p class="lead" id="lead2-2">직접 세탁 하기 까다로운 세탁물을 <br>우리동네 전문가에게 맡겨보세요 <br> </p>
       </div>
       </div>
@@ -228,18 +211,15 @@
 
   <div class="divider"></div>
   <div class="divider"></div>
-  <!-- <div class="b-example-divider"></div> -->
-
 
   <div id="bg-footer" class="text-secondary px-4 py-5 text-center">
       <div class="py-5">
-      <h1 id="footer-title" class="display-5 fw-bold text-black">지금 바로 희희세탁 이용해보세요!</h1>
+      <h1 id="footer-title" class="display-5 fw-bold text-black">지금 바로 "희희세탁" 이용해보세요!</h1>
       <div class="col-lg-6 mx-auto">
-      <p class="fs-5 mb-4">직접 귀찮게 세탁하지마세요, <br>"희희세탁" 서비스를 이용하고 귀중한 시간을 아껴보세요</p>
+      <p class="fs-5 mb-4">직접 귀찮게 세탁하지마세요 <br>"희희세탁" 서비스를 이용하고 귀중한 시간을 아껴보세요</p>
       <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-      <button id="footer-button" onclick="location.href='postlaundry'" type="button" class="btn btn-primary btn-lg px-4 gap-3">서비스 이용해보기</button>
-      <button type="button" class="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold">리뷰 보러가기</button>
-      <!-- <button type="button" class="btn btn-outline-light btn-lg px-4">Secondary</button> -->
+      <button id="footer-button" onclick="location.href='/login'" type="button" class="btn btn-primary btn-lg px-4 gap-3">서비스 이용해보기</button>
+      <button type="button" class="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold" onclick="location.href='/signup'">회원가입</button>
       </div>
       </div>
       </div>

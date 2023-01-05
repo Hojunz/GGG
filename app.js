@@ -52,49 +52,92 @@ app.get('/', (req, res) => {
 });
 
 app.get('/homeimg', (req, res) => {
-fs.readFile(__dirname + '/public/images/homePng4.png', (err, data) => {
-  if (err) {
-    return res.send('Error Occured');
-  }
-  res.writeHead(200, {'Content-Type': 'image/png'});
-  res.end(data);
-});
+  fs.readFile(__dirname + '/public/images/homePng4.png', (err, data) => {
+    if (err) {
+      return res.send('Error Occured');
+    }
+    res.writeHead(200, {'Content-Type': 'image/png'});
+    res.end(data);
+  });
 });
 
-app.get('/homeicon', (req, res) => {
-fs.readFile(__dirname + '/public/images/laundry.jpg', (err, data) => {
-  if (err) {
-    return res.send('Error Occured');
-  }
-  res.writeHead(200, {'Content-Type': 'image/jpg'});
-  res.end(data);
+//----------영상, 이미지--------------------------
+app.get('/laundryicon', (req, res) => {
+  fs.readFile(__dirname + '/public/images/laundryicon2.png', (err, data) => {
+    if (err) {
+      return res.send('Error Occured');
+    }
+    res.writeHead(200, {'Content-Type': 'image/png'});
+    res.end(data);
+  });
 });
+
+// 빨래신청 예시 이미지
+app.get('/laundryimage', (req, res) => {
+  fs.readFile(__dirname + '/public/images/laundry3.jpg', (err, data) => {
+    if (err) {
+      return res.send('Error Occured');
+    }
+    res.writeHead(200, {'Content-Type': 'image/jpg'});
+    res.end(data);
+  });
 });
 
 app.get('/homevideo', (req, res) => {
-fs.readFile(__dirname + '/public/images/video.mp4', (err, data) => {
-  if (err) {
-    return res.send('Error Occured');
-  }
-  res.writeHead(200, {'Content-Type': 'video/mp4'});
-  res.end(data);
+  fs.readFile(__dirname + '/public/images/video.mp4', (err, data) => {
+    if (err) {
+      return res.send('Error Occured');
+    }
+    res.writeHead(200, {'Content-Type': 'video/mp4'});
+    res.end(data);
+  });
 });
+
+app.get('/homevideo2', (req, res) => {
+  fs.readFile(__dirname + '/public/images/video2.mp4', (err, data) => {
+    if (err) {
+      return res.send('Error Occured');
+    }
+    res.writeHead(200, {'Content-Type': 'video/mp4'});
+    res.end(data);
+  });
 });
+//----------영상, 이미지--------------------------
 
 app.get('/login', (req, res) => {
-res.render('login')
+  res.render('login');
 })
 
+app.get('/loginboss', (req, res) => {
+  res.render('loginboss');
+});
+
 app.get('/signup', (req, res) => {
-res.render('signup')
+  res.render('signup')
+})
+
+app.get('/signupboss', (req, res) => {
+  res.render('signupboss')
+})
+
+app.get('/usermypage', (req, res) => {
+  res.render('mypage')
 })
 
 app.get('/postlaundry', (req, res) => {
-res.render('postlaundry')
+  res.render('postlaundry')
 })
 
-app.get('/boss', async (req, res) => {
-res.render('boss')
+app.get('/usermypage/reviews', (req, res) => {
+  res.render('userreviews')
+})
+
+app.get('/boss', (req, res) => {
+  res.render('boss')
+})
+
+app.get('/boss/reviews', (req, res) => {
+  res.render('bossreviews')
 })
 //-------------------프론트쪽 임시구역-------------------------------------------
 //-------------------프론트쪽 임시구역-------------------------------------------

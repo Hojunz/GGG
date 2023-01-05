@@ -14,102 +14,116 @@
 
 </head>
 <style>
-    /* body {
-    
-    } */
-
-    #form {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-
-        width: auto;
-        height: 600px;
+    body {
+    color: rgb(0, 0, 0);
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    text-align: center;
     }
 
-    button {
-    display: inline-block;
-    width: 200px;
-    height: 50px;
-    border: none;
-    border-radius: 25px;
-    background-color: blue;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    outline: none;
+    #back-usermypage {
+        margin-top: 11px;
+        color: rgb(255, 255, 255);
     }
 
-    button:hover {
-    background-color: lightblue;
+    .form-floating1 {
+        margin-top: 15px;
+        color: black;
     }
 
-    button:active {
-    background-color: darkblue;
+    .form-floating2 {
+        color: black;
     }
 
-    #postlaundrybutton {
-        margin-top: 20px;
+    #laundryicon {
+        width: 12%;
+        margin-bottom: 5px;
     }
 
-    input[type='text'] {
-    display: block;
-    width: 300px;
-    height: 30px;
-    border: 1px solid gray;
-    border-radius: 10px;
-    font-size: 14px;
+    #laundryicon {
+        transition: all 0.2s linear;
     }
 
-    input[type='text']:focus {
-        border-color: blue;
+    #laundryicon:hover {
+        transform: scale(1.1);
     }
 
-    #postlaundry {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
+    a:link {
+        color: rgb(0, 0, 0);
+        text-decoration: none;
     }
 
-    #login {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
+    a:visited {
+        color: rgb(0, 0, 0);
+        text-decoration: none;
+    }
+
+    a:hover {
+        color: rgb(0, 66, 164);
+    }
+
+    a:active {
+        color: rgb(0, 1, 9);
+        text-decoration: none;
+    }
+
+    #confirms {
+        margin: 0px;
+    }
+
+    #bg-video {
+        position: fixed; right: 0; bottom: 0; 
+        min-width: 100%; min-height: 100%;
+        width: 90%; height: auto; z-index: -100;
+        background: url(polina.jpg) no-repeat;
+        background-size: cover;
+        opacity: 0.25;
     }
 </style>
 
 <body>
-    <!-- <button id="login" onclick="location.href='login'">로그인</button> -->
-    <nav class="navbar bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">희희세탁</a>
-      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-        <button onclick="location.href='/login'" class="btn btn-primary me-md-2" type="button">로그인</button>
-        <button onclick="location.href='/signup'" class="btn btn-primary" type="button">회원가입</button>
-      </div>
-    </div>
-    </nav>
+    <video src="/homevideo2" id="bg-video" autoplay muted loop></video>
+    <img id="laundryicon" src="/laundryicon" onclick="location.href='/'">
     
-    <div id="form">
-    <h1>더러운 세탁물을 깨끗히</h1>
-
-    <form  action="/postlaundry" method="POST" id="postlaundry">
-        <input type="text" name="phonenumber" placeholder="연락처"   required />
-        <br>
-        <input type="text" name="address"     placeholder="주소"     required />
-        <br>
-        <!-- <input type="text" name="image"       placeholder="이미지"   required /> -->
-        <input type="file" name="image" />
-        <br>
-        <input type="text" name="comment"     placeholder="요청사항" required />
-    <button type="submit" id="postlaundrybutton">희희 세탁물 신청</button>
-    </form>
+<div id="order-form">
+    <form method="POST" action="" >
+    <!-- <h1 id="PleaseSignUp">Please Sign Up</h1> -->
+    <div class="form-floating1">
+        <input type="id" class="form-control" id="signupid" name="phonenumber" placeholder="* 연락처">
+        <label for="floatingInput"></label>
+        <input type="id" class="form-control" id="signupname" name="address" placeholder="* 주소">
+        <label for="floatingInput"></label>
     </div>
 
+    <div class="form-floating2">
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" placeholder="* 요청사항"></textarea>
+        <label for="floatingInput"></label>
+        <input class="form-control" type="file" id="formFileMultiple" multiple>
+        <label for="floatingPassword"></label>
+    </div>
+
+    <button class="w-100 btn btn-lg btn-primary" type="submit">세탁물 신청</button>
+    <button type="button" id="back-usermypage" class="w-100 btn btn-lg btn-secondary" onclick="location.href='/usermypage'">마이페이지</button>
+    </form>
+</div>
+
+
+    <!-- <p id="confirms">{{confirm_id_name_pw}}
+        {{confirm_id_msg}}
+        {{confirm_name_msg}}
+        {{confirm_pw_msg}}
+        {{already_name_msg}}
+        {{already_id_msg}}
+        {{confirm_pw_c_msg}}
+    </p> -->
+
+    <p class="mt-5 mb-3 text-muted" id="heeheelaundry">&copy;희희세탁</p>
 </body>
+
     <script 
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" 
     integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" 
