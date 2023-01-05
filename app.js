@@ -85,18 +85,9 @@ app.get('/login', (req, res) => {
 res.render('login')
 })
 
-app.get('/signupcheck', (req, res) => {
-res.render('signupcheck')
+app.get('/signup', (req, res) => {
+res.render('signup')
 })
-
-app.get('/signupguest', (req, res) => {
-res.render('signupguest')
-})
-
-app.get('/signupowner', (req, res) => {
-res.render('signupowner')
-})
-
 
 app.get('/postlaundry', (req, res) => {
 res.render('postlaundry')
