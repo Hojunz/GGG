@@ -128,15 +128,19 @@ app.get('/postlaundry', (req, res) => {
   res.render('postlaundry')
 })
 
-app.get('/usermypage/reviews', (req, res) => {
+app.get('/userreviews', (req, res) => {
   res.render('userreviews')
+})
+
+app.get('/postreview', (req, res) => {
+  res.render('postreview')
 })
 
 app.get('/boss', (req, res) => {
   res.render('boss')
 })
 
-app.get('/boss/reviews', (req, res) => {
+app.get('/bossreviews', (req, res) => {
   res.render('bossreviews')
 })
 //-------------------프론트쪽 임시구역-------------------------------------------
