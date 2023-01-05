@@ -113,18 +113,6 @@
 
     <div id="form">
       <h1>더러운 세탁물을 깨끗히</h1>
-
-      <form action="/postlaundry" method="POST" id="postlaundry">
-        <input type="text" name="phonenumber" placeholder="연락처" required />
-        <br />
-        <input type="text" name="address" placeholder="주소" required />
-        <br />
-        <!-- <input type="text" name="image"       placeholder="이미지"   required /> -->
-        <input type="file" name="image" />
-        <br />
-        <input type="text" name="comment" placeholder="요청사항" required />
-        <button type="submit" id="postlaundrybutton">희희 세탁물 신청</button>
-      </form>
     </div>
   </body>
   <script
@@ -139,7 +127,7 @@
     <img id="laundryicon" src="/laundryicon" onclick="location.href='/'">
     
 <div id="order-form">
-    <form method="POST" action="" >
+    <form method="POST" action="/api/laundries" >
     <!-- <h1 id="PleaseSignUp">Please Sign Up</h1> -->
     <div class="form-floating1">
         <input type="text" class="form-control" id="signupid" name="phonenumber" placeholder="* 연락처">

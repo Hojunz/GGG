@@ -15,13 +15,14 @@ class LaundriesController {
   createLaundry = async (req, res, next) => {
     const { phonenumber, address, image, comment } = req.body;
     const imageFile = req.file.filename;
-    // const User = res.locals.user.id;
+    const User = res.locals.user.id;
+
     const createLaundryData = await this.laundryService.createLaundry(
       phonenumber,
       address,
       imageFile,
-      comment
-      // User
+      comment,
+      User
     );
 
     res.status(201).json({ createLaundryData });
@@ -47,19 +48,27 @@ class LaundriesController {
   };
 
   // 세탁물 상태 변경
-  updateLaundry = async (req, res, next) => {
-    try {
+  updateLaundry = async (req, res, next) =>{
+    try{
       const { laundryId } = req.params;
-      const isAdmin = res.locals.boss.isAdmin;
       const bossId = res.locals.boss.id;
 
-      await this.laundryService.updateLaundry(laundryId, bossId);
-
-      res.status(201).send({ message: "세탁물 상태가 변경되었습니다!" });
-    } catch (error) {
+      const hoho = await this.laundryService.updateLaundry(laundryId, bossId);
+      
+      if(hoho.message) {
+       return res.json({message: hoho.message})
+      }
+      
+      res.status(202).send({ message: " 호호없음 작동 " });
+    } catch(error){
       res.status(444).json({ errorMessage: error.message });
     }
-  };
+
+      // if(hoho.message) {
+      //   return res.json({message: hoho.message})
+      // }
+
+};
 
   // 전체 세탁물 조회 (사장님 전용)
   findAllLaundries = async (req, res, next) => {
@@ -72,5 +81,6 @@ class LaundriesController {
     }
   };
 }
+
 
 module.exports = LaundriesController;

@@ -93,7 +93,8 @@
     <script>
 
     $(document).ready(function(){
-        listing();
+      bossInfo()
+      listing();
     });
 
       function logoutBoss() {
@@ -162,14 +163,42 @@
           url: `/api/laundries/${id}`,
           data: {},
           success: function (response) {
-            alert('상태변경 완료!')
+            alert(response.message)
             window.location.href='/boss'
           },
           error:function(request,status,error){
               alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
           }
-    })
-  }
+        })
+      }
+
+    function bossInfo() {
+      $.ajax({
+          type: 'GET',
+          url: '/api/boss/me',
+          data: {},
+          success: function (response) {
+            let rows = response.boss
+
+            let nickname = rows['nickname']
+            let money = rows['money']
+            let email = rows['email']
+            let phonenumber = rows['phonenumber']
+
+            let temp_html = `<h1 id="boss-name" class="fw-light">${nickname} 사장님~~~ 좋은 하루 되세요!</h1>
+                              <div id="boss-info">
+                                <p class="lead text-muted">POINT: ${money}</p>
+                                <p class="lead text-muted">Email: ${email}</p>
+                                <p class="lead text-muted">연락처: ${phonenumber}</p>
+                              </div> `
+
+            $('#boss-infoma').append(temp_html)
+
+          }, error:function(request,status,error){
+              alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+          }
+        })
+      }
     </script>
 
   </head>
@@ -183,18 +212,13 @@
 <section class="py-5 text-center container">
     <div class="row py-lg-5">
       <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 id="boss-name" class="fw-light">깨끗세탁 사장님</h1>  <!--신청자(업체명) -->
-        
-        <div id="boss-info">
-        <p class="lead text-muted">POINT: 1,000,000</p>
-        <p class="lead text-muted">Email: jmoon581@naver.com</p>
-        <p class="lead text-muted">연락처: 010-7777-8282</p>
+        <div id="boss-infoma">
         </div>
 
         <p>
           <a class="btn btn-primary btn-lg my-2" onclick="location.href='/boss'">세탁신청 목록</a>
           <a class="btn btn-secondary btn-lg my-2" onclick="location.href='/bossreviews'">리뷰 보기</a>
-        </p>    
+        </p>
       </div>
     </div>
 </section>

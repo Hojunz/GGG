@@ -88,6 +88,74 @@
       }
     </style>
 
+    <script>
+      $(document).ready(function(){
+        bossInfo()
+        review_listing()
+      });
+
+
+      function bossInfo() {
+        $.ajax({
+            type: 'GET',
+            url: '/api/boss/me',
+            data: {},
+            success: function (response) {
+              let rows = response.boss
+
+              let nickname = rows['nickname']
+              let money = rows['money']
+              let email = rows['email']
+              let phonenumber = rows['phonenumber']
+
+              let temp_html = `<h1 id="boss-name" class="fw-light">${nickname} 사장님~~~ 좋은 하루 되세요!</h1>
+                                <div id="boss-info">
+                                  <p class="lead text-muted">POINT: ${money}</p>
+                                  <p class="lead text-muted">Email: ${email}</p>
+                                  <p class="lead text-muted">연락처: ${phonenumber}</p>
+                                </div> `
+
+              $('#boss-infoma').append(temp_html)
+
+            }, error:function(request,status,error){
+                alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+            }
+          })
+      }
+
+    function review_listing(){
+      $.ajax({
+          type: 'GET',
+          url: '/api/laundry/reviews',
+          data: {},
+          success: function (response) {
+              let rows = response.data
+              for (let i=0; i < rows.length; i++) {
+                let grade = rows[i]['grade']
+                let comment = rows[i]['comment']
+                let createdAt = rows[i]['createdAt']
+
+                let temp_html = `<div class="col">
+                                    <div class="card" style="width: 26rem;">
+                                        <div class="card-body">
+                                          <h5 class="card-title">Review</h5>
+                                          <h6 class="card-subtitle mb-2 text-muted">작성자: 익명의 누군가</h6>
+                                          <h6 class="card-subtitle mb-2 text-muted">${grade}</h6>
+                                          <p class="card-text">${comment}</p>
+                                            <small class="text-muted">${createdAt}</small>
+                                        </div>
+                                      </div>
+                                  </div>`
+                $('#review_list').append(temp_html)                  
+              }
+          },
+          error: function (error) {
+              alert('목록 불러오기에 실패하였습니다.');
+          },
+      });
+    }
+    </script>
+
   </head>
 <body>
 
@@ -100,14 +168,8 @@
 <section class="py-5 text-center container">
     <div class="row py-lg-5">
       <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 id="boss-name" class="fw-light">깨끗세탁 사장님</h1>  <!--신청자(업체명) -->
-        
-        <div id="boss-info">
-        <p class="lead text-muted">POINT: 1,000,000</p>
-        <p class="lead text-muted">Email: jmoon581@naver.com</p>
-        <p class="lead text-muted">연락처: 010-7777-8282</p>
+        <div id="boss-infoma">
         </div>
-
         <p>
             <a class="btn btn-primary btn-lg my-2" onclick="location.href='/boss'">세탁신청 목록</a>
             <a class="btn btn-secondary btn-lg my-2" onclick="location.href='/bossreviews'">리뷰 보기</a>
@@ -120,43 +182,8 @@
 <div class="album py-5 bg-light">
     <div class="container">
 
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-        <!-- ------------------- -->
-        <div class="col">
-            <div class="card" style="width: 26rem;">
-                <div class="card-body">
-                  <h5 class="card-title">예시 리뷰입니다.</h5>
-                  <h6 class="card-subtitle mb-2 text-muted">작성자: 푸드리</h6>
-                  <h6 class="card-subtitle mb-2 text-muted">5점</h6>
-                  <p class="card-text">완전 깨끗하다!!! 완전 깨끗하다!!!</p>
-                    <small class="text-muted">2022-12-20</small>
-                </div>
-              </div>
-          </div>
-          <div class="col">
-            <div class="card" style="width: 26rem;">
-                <div class="card-body">
-                  <h5 class="card-title">예시 리뷰입니다.</h5>
-                  <h6 class="card-subtitle mb-2 text-muted">작성자: 푸드리</h6>
-                  <h6 class="card-subtitle mb-2 text-muted">5점</h6>
-                  <p class="card-text">완전 깨끗하다!!! 완전 깨끗하다!!!</p>
-                    <small class="text-muted">2022-12-20</small>
-                </div>
-              </div>
-          </div>
-          <div class="col">
-            <div class="card" style="width: 26rem;">
-                <div class="card-body">
-                  <h5 class="card-title">예시 리뷰입니다.</h5>
-                  <h6 class="card-subtitle mb-2 text-muted">작성자: 푸드리</h6>
-                  <h6 class="card-subtitle mb-2 text-muted">5점</h6>
-                  <p class="card-text">완전 깨끗하다!!! 완전 깨끗하다!!!</p>
-                    <small class="text-muted">2022-12-20</small>
-                </div>
-              </div>
-          </div>
-          
-<!-- -------------------------------- -->
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" id="review_list">
+
       </div>
     </div>
   </div>
