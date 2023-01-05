@@ -101,26 +101,7 @@
   </head>
   <body>
     <!-- 헤더 -->
-    <header>
-      <div class="navbar navbar-dark bg-light shadow-sm">
-        <div class="container">
-          <a href="/" class="navbar-brand d-flex align-items-center">
-            <strong id="header-title">희희세탁</strong>
-          </a>
-          <button
-            class="btn btn-primary"
-            type="submit"
-            onclick="location.href='api/user/logout'"
-          >
-            로그아웃
-          </button>
-        </div>
-        <p>
-          <a class="btn btn-primary btn-lg my-2" onclick="location.href='/postlaundry'" >세탁 신청하러 가기</a>
-          <a class="btn btn-secondary btn-lg my-2" onclick="location.href='/userreviews'">내가 쓴 리뷰 보기</a>
-        </p>    
-      </div>
-    </header>
+    <%- include('header.html') %>
     <!-- 헤더 -->
 
     <!-- 메인 -->
@@ -129,22 +110,24 @@
         <div class="row py-lg-5">
           <div class="col-lg-6 col-md-8 mx-auto">
             <h1 id="user-name" class="fw-light">
-              <%= data.nickname %> 님, 오늘도 깨끗한 하루 되세요!
+              <%= data.nickname %> 님
             </h1>
+            <h1 class="fw-light">오늘도 깨끗한 하루 되세요!</h1>
             <!--신청자 -->
             <div id="user-info">
               <p class="lead text-muted">POINT: <%= data.money %></p>
               <p class="lead text-muted">Email: <%= data.email %></p>
               <p class="lead text-muted">연락처: <%= data.phonenumber %></p>
+              <p>
+                <a class="btn btn-primary btn-lg my-2" onclick="location.href='/postlaundry'" >세탁 신청하러 가기</a>
+                <a class="btn btn-secondary btn-lg my-2" onclick="location.href='/userreviews'">내가 쓴 리뷰 보기</a>
+              </p> 
             </div>
 
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" id="cards-box">
-        <!-- ------------------- -->
+      <div class="row row-cols-md-10 row-cols-sm-10 row-cols-md-10 g-10" id="cards-box">
         <div class="col">
           <div class="card shadow-sm">
-
-            <img src="/laundryimage">
-            
+            <img src="/laundryimage">        
             <div class="card-body">
               <p class="card-text">요청사항: 깨끗하게 해주세요 (예시 목록입니다)</p>
               <p class="card-text">신청자: 푸드리</p>
@@ -159,6 +142,8 @@
                   data-bs-target="#exampleModal" 
                   data-bs-whatever="@fat" onclick="location.href='/postreview'" >리뷰 쓰기</button>
                 </div>
+                <small class="text-muted">배송중</small>
+                <small class="text-muted">2022-12-20</small>
               </div>
             </div>
             <div class="col">
