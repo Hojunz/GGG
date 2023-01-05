@@ -105,16 +105,16 @@
     <form method="POST" id="signupForm" action="" >
     <h1 id="PleaseSignUp">Please Sign Up</h1>
     <div class="form-floating1">
-        <input type="id" class="form-control" id="signupid" name="email" placeholder="* 이메일" maxlength="20">
+        <input type="id" class="form-control" id="signupid" name="email" placeholder="* 이메일" maxlength="40">
         <label for="floatingInput"></label>
-        <input type="id" class="form-control" id="signupname" name="nickname" placeholder="* 닉네임" maxlength="20">
+        <input type="id" class="form-control" id="signupname" name="nickname" placeholder="* 닉네임" maxlength="40">
         <label for="floatingInput"></label>
     </div>
 
     <div class="form-floating2">
-        <input type="password" class="form-control" id="signuppw" name="password" placeholder="* 비밀번호" maxlength="20">
+        <input type="password" class="form-control" id="signuppw" name="password" placeholder="* 비밀번호" maxlength="40">
         <label for="floatingPassword"></label>
-        <input type="password" class="form-control" id="floatingPassword" name="confirmpassword" placeholder="* 비밀번호 확인" maxlength="20">
+        <input type="password" class="form-control" id="floatingPassword" name="confirmpassword" placeholder="* 비밀번호 확인" maxlength="40">
         <label for="floatingPassword"></label>
     </div>
 
@@ -135,31 +135,15 @@
     </p> -->
     
     <!-- 하단  -->
-    <p id="bossOrUser"><%= message %></p>
+    <p id="bossOrUser">손님 회원가입 페이지입니다</p>
     <div id="checkbox" class="form-check">
+    <button type="button" class="btn btn-primary btn-sm" onclick="location.href='/signupboss'" >사장님으로 회원가입하기</button>
     </div>
     <br>
     <p id="heeheelaundry" class="mt-5 mb-3 text-muted">&copy;희희세탁</p>
     <!-- 하단  -->
     
 </body>
-<!-- ----------------------------------------- -->
-<script>
-    const bossOrUser = document.querySelector("#bossOrUser").innerText
-    const bossButtonTemp = `<button type="button" class="btn btn-primary btn-sm" onclick="location.href='/signup/boss'" >사장님으로 회원가입하기</button>`
-
-    const userButtonTemp = `<button type="button" class="btn btn-primary btn-sm" onclick="location.href='/signup'" >손님으로 회원가입하기</button>`
-
-    if (bossOrUser === "사장님 회원가입 페이지입니다"){
-        $('#checkbox').empty()
-        $('#checkbox').append(userButtonTemp)
-    }
-    else if(bossOrUser === "손님 회원가입 페이지입니다"){
-        $('#checkbox').empty()
-        $('#checkbox').append(bossButtonTemp)
-    }
-</script>
-<!-- ----------------------------------------- -->
 
 <script 
 src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" 

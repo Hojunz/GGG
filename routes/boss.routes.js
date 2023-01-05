@@ -5,8 +5,8 @@ const bossMiddleware = require("../middlewares/boss");
 const BossesController = require("../controller/bosses.controller");
 const bossescontroller = new BossesController();
 
-router.post("/api/signupboss", bossescontroller.createBoss);
-router.post("/api/loginboss", bossescontroller.loginBoss);
+router.post("/signup", bossescontroller.createBoss);
+router.post("/login", bossescontroller.loginBoss);
 
 // 사용자 인증 미들웨어 추가
 router.use(bossMiddleware, (req, res, next) => {

@@ -105,31 +105,19 @@ app.get('/homevideo2', (req, res) => {
 //----------영상, 이미지--------------------------
 
 app.get('/login', (req, res) => {
-  const data = {
-    message: "손님 로그인 페이지입니다"
-  };
-  res.render('login', data);
+  res.render('login');
 })
 
-app.get('/login/boss', (req, res) => {
-  const data = {
-    message: "사장님 로그인 페이지입니다"
-  };
-  res.render('login', data);
+app.get('/loginboss', (req, res) => {
+  res.render('loginboss');
 });
 
 app.get('/signup', (req, res) => {
-  const data = {
-    message: "손님 회원가입 페이지입니다"
-  };
-  res.render('signup', data)
+  res.render('signup')
 })
 
-app.get('/signup/boss', (req, res) => {
-  const data = {
-    message: "사장님 회원가입 페이지입니다"
-  };
-  res.render('signup', data)
+app.get('/signupboss', (req, res) => {
+  res.render('signupboss')
 })
 
 app.get('/usermypage', (req, res) => {
