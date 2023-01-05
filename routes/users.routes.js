@@ -7,28 +7,11 @@ const { Laundry, User } = require("../models");
 const UsersController = require("../controller/users.controller");
 const userscontroller = new UsersController();
 
-// 회원 가입 폼
-router.get("/signup", (req, res) => {
-  res.render("signup.ejs");
-});
-
-// 로그인 폼
-router.get("/login", (req, res) => {
-  res.render("login.ejs");
-});
-
 router.post("/signup", userscontroller.createUser);
 router.post("/login", userscontroller.loginUser);
 
 router.use(indexMiddleware, (req, res, next) => {
   next();
-});
-
-router.get("/mypage", async (req, res) => {
-  const userid = res.locals.user.id;
-  const user = await User.findByPk(userid);
-  const { dataValues: data } = user;
-  res.render("mypage.ejs", { data });
 });
 
 router.post("/logout", userscontroller.logoutUser);

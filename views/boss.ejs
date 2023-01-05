@@ -1,24 +1,37 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.104.2">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta
+      name="author"
+      content="Mark Otto, Jacob Thornton, and Bootstrap contributors"
+    />
+    <meta name="generator" content="Hugo 0.104.2" />
     <title>업체 마이페이지</title>
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/album/">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet"> 
+    <link
+      rel="canonical"
+      href="https://getbootstrap.com/docs/5.2/examples/album/"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap"
+      rel="stylesheet"
+    />
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <!-- 쿠키 -->
     <script src=" https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
-    
 
-<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet" />
 
     <style>
       .bd-placeholder-img {
@@ -37,10 +50,11 @@
 
       .b-example-divider {
         height: 3rem;
-        background-color: rgba(0, 0, 0, .1);
-        border: solid rgba(0, 0, 0, .15);
+        background-color: rgba(0, 0, 0, 0.1);
+        border: solid rgba(0, 0, 0, 0.15);
         border-width: 1px 0;
-        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+        box-shadow: inset 0 0.5em 1.5em rgba(0, 0, 0, 0.1),
+          inset 0 0.125em 0.5em rgba(0, 0, 0, 0.15);
       }
 
       .b-example-vr {
@@ -50,7 +64,7 @@
       }
 
       .bi {
-        vertical-align: -.125em;
+        vertical-align: -0.125em;
         fill: currentColor;
       }
 
@@ -89,45 +103,44 @@
         color: black;
       }
     </style>
-   
-    <script>
 
-    $(document).ready(function(){
+    <script>
+      $(document).ready(function () {
         listing();
-    });
+      });
 
       function logoutBoss() {
         $.ajax({
-            method: 'POST',
-            url: '/api/boss/logout',
-            data: {},
-            success: function (response) {
-                alert('로그아웃 완료!');
-                location.href = '/loginboss';
-            },
-            error: function (error) {
-                alert('로그아웃에 실패하였습니다.');
-            },
-        });
-    }
-
-    function listing(id){
-      $.ajax({
-          type: 'GET',
-          url: '/api/laundries',
+          method: "POST",
+          url: "/api/boss/logout",
           data: {},
           success: function (response) {
-              let rows = response.data
-              for (let i=0; i < rows.length; i++) {
-                let id = rows[i]['id']
-                let phonenumber = rows[i]['phonenumber']
-                let address = rows[i]['address']
-                let image = rows[i]['image']
-                let comment = rows[i]['comment']
-                let status = rows[i]['status']
-                let createdAt = rows[i]['createdAt']
+            alert("로그아웃 완료!");
+            location.href = "/loginboss";
+          },
+          error: function (error) {
+            alert("로그아웃에 실패하였습니다.");
+          },
+        });
+      }
 
-                let temp_html = `<div class="col">
+      function listing(id) {
+        $.ajax({
+          type: "GET",
+          url: "/api/laundries",
+          data: {},
+          success: function (response) {
+            let rows = response.data;
+            for (let i = 0; i < rows.length; i++) {
+              let id = rows[i]["id"];
+              let phonenumber = rows[i]["phonenumber"];
+              let address = rows[i]["address"];
+              let image = rows[i]["image"];
+              let comment = rows[i]["comment"];
+              let status = rows[i]["status"];
+              let createdAt = rows[i]["createdAt"];
+
+              let temp_html = `<div class="col">
                                     <div class="card shadow-sm">
 
                                       <img src=${image}>
@@ -146,75 +159,91 @@
                                         </div>
                                       </div>
                                     </div>
-                                  </div>`
-                $('#card-box').append(temp_html)                  
-              }
+                                  </div>`;
+              $("#card-box").append(temp_html);
+            }
           },
           error: function (error) {
-              alert('목록 불러오기에 실패하였습니다.');
+            alert("목록 불러오기에 실패하였습니다.");
           },
-      });
-    }
+        });
+      }
 
-    function change(id) {
-      $.ajax({
-          type: 'PATCH',
+      function change(id) {
+        $.ajax({
+          type: "PATCH",
           url: `/api/laundries/${id}`,
           data: {},
           success: function (response) {
-            alert('상태변경 완료!')
-            window.location.href='/boss'
+            alert("상태변경 완료!");
+            window.location.href = "/boss";
           },
-          error:function(request,status,error){
-              alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-          }
-    })
-  }
+          error: function (request, status, error) {
+            alert(
+              "code:" +
+                request.status +
+                "\n" +
+                "message:" +
+                request.responseText +
+                "\n" +
+                "error:" +
+                error
+            );
+          },
+        });
+      }
     </script>
-
   </head>
-<body>
-<!-- 헤더 -->
-<%- include('header.html') %>
-<!-- 헤더 -->
+  <body>
+    <!-- 헤더 -->
+    <%- include('header.html') %>
+    <!-- 헤더 -->
 
-<!-- 메인 -->
-<main>
-<section class="py-5 text-center container">
-    <div class="row py-lg-5">
-      <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 id="boss-name" class="fw-light">깨끗세탁 사장님</h1>  <!--신청자(업체명) -->
-        
-        <div id="boss-info">
-        <p class="lead text-muted">POINT: 1,000,000</p>
-        <p class="lead text-muted">Email: jmoon581@naver.com</p>
-        <p class="lead text-muted">연락처: 010-7777-8282</p>
+    <!-- 메인 -->
+    <main>
+      <section class="py-5 text-center container">
+        <div class="row py-lg-5">
+          <div class="col-lg-6 col-md-8 mx-auto">
+            <h1 id="boss-name" class="fw-light">깨끗세탁 사장님</h1>
+            <!--신청자(업체명) -->
+
+            <div id="boss-info">
+              <p class="lead text-muted">POINT: 1,000,000</p>
+              <p class="lead text-muted">Email: jmoon581@naver.com</p>
+              <p class="lead text-muted">연락처: 010-7777-8282</p>
+            </div>
+
+            <p>
+              <a
+                class="btn btn-primary btn-lg my-2"
+                onclick="location.href='/boss'"
+                >세탁신청 목록</a
+              >
+              <a
+                class="btn btn-secondary btn-lg my-2"
+                onclick="location.href='/bossreviews'"
+                >리뷰 보기</a
+              >
+            </p>
+          </div>
         </div>
+      </section>
 
-        <p>
-          <a class="btn btn-primary btn-lg my-2" onclick="location.href='/boss'">세탁신청 목록</a>
-          <a class="btn btn-secondary btn-lg my-2" onclick="location.href='/bossreviews'">리뷰 보기</a>
-        </p>    
+      <!-- 목록구역 -->
+      <div class="album py-5 bg-light">
+        <div class="container">
+          <div
+            class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3"
+            id="card-box"
+          ></div>
+        </div>
       </div>
-    </div>
-</section>
-
-<!-- 목록구역 -->
-<div class="album py-5 bg-light">
-    <div class="container">
-
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" id="card-box">
-      </div>
-    </div>
-  </div>
-</main>
+    </main>
     <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
-    <script 
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" 
-    integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" 
-    crossorigin="anonymous">
-    </script>
-    
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>
-

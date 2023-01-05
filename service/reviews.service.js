@@ -4,8 +4,9 @@ class ReviewService {
   reviewRepository = new ReviewRepository();
 
   //리뷰 생성
-  createReview = async (grade, comment, user_id, laundry_id) => {
+  createReview = async (id, grade, comment, user_id, laundry_id) => {
     const createReviewData = await this.reviewRepository.createReview(
+      id,
       grade,
       comment,
       user_id,
@@ -19,11 +20,14 @@ class ReviewService {
   };
 
   //리뷰 수정
-  updateReview = async (id, grade, comment) => {
+  updateReview = async (id, grade, comment, User) => {
     try {
       const findReview = await this.reviewRepository.findReviewById(id);
 
       if (!findReview) throw new Error("리뷰가 존재하지 않아요.");
+      if (User !== findReview.id) {
+        return { errorMessage: error.message };
+      }
 
       const updateReview = await this.reviewRepository.updateReview(
         id,
@@ -31,11 +35,9 @@ class ReviewService {
         comment
       );
 
-      // const updateReview = await this.reviewRepository.findReviewById(id)
-
       return updateReview;
     } catch (error) {
-      res.status(445).json({ errorMessage: error.message });
+      return { errorMessage: error.message };
     }
   };
 
@@ -49,6 +51,7 @@ class ReviewService {
 
     return allReview.map((review) => {
       return {
+        id: review.id,
         grade: review.grade,
         comment: review.comment,
       };

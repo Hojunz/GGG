@@ -18,6 +18,7 @@ class LaundryService {
         address: laundry.address,
         image: laundry.image,
         comment: laundry.comment,
+        status: laundry.status,
         createdAt: laundry.createdAt,
         updatedAt: laundry.updatedAt,
       };

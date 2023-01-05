@@ -1,13 +1,8 @@
 {
   "development": {
     "username": "root",
-<<<<<<< HEAD
     "password": "12345",
     "database": "ggg",
-=======
-    "password": "Password1!",
-    "database": "hhst",
->>>>>>> 80c58362cd792b89ddaf4c472b56a6d8da17c96a
     "host": "127.0.0.1",
     "dialect": "mysql",
     "logging": false

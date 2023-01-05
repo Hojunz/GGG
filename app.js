@@ -104,51 +104,47 @@ app.get("/homevideo2", (req, res) => {
 });
 //----------영상, 이미지--------------------------
 
-<<<<<<< HEAD
-=======
-app.get('/login', (req, res) => {
-  res.render('login');
-})
-
-app.get('/loginboss', (req, res) => {
-  res.render('loginboss');
+// 손님 회원가입 & 로그인
+app.get("/signup", (req, res) => {
+  res.render("signup");
 });
 
-app.get('/signup', (req, res) => {
-  res.render('signup')
-})
+app.get("/login", (req, res) => {
+  res.render("login");
+});
 
-app.get('/signupboss', (req, res) => {
-  res.render('signupboss')
-})
+app.get("/postlaundry", (req, res) => {
+  res.render("postlaundry");
+});
 
-app.get('/usermypage', (req, res) => {
-  res.render('mypage')
-})
+app.get("/mypage", (req, res) => {
+  res.render("mypage");
+});
 
-app.get('/postlaundry', (req, res) => {
-  res.render('postlaundry')
-})
+app.get("/userreviews", (req, res) => {
+  res.render("userreviews");
+});
 
-app.get('/userreviews', (req, res) => {
-  res.render('userreviews')
-})
+app.get("/signupboss", (req, res) => {
+  res.render("signupboss");
+});
 
-app.get('/postreview', (req, res) => {
-  res.render('postreview')
-})
+app.get("/loginboss", (req, res) => {
+  res.render("loginboss");
+});
 
-app.get('/boss', (req, res) => {
-  res.render('boss')
-})
+app.get("/boss", (req, res) => {
+  res.render("boss");
+});
 
-app.get('/bossreviews', (req, res) => {
-  res.render('bossreviews')
-})
-//-------------------프론트쪽 임시구역-------------------------------------------
-//-------------------프론트쪽 임시구역-------------------------------------------
+app.get("/postreview", (req, res) => {
+  res.render("postreview");
+});
 
->>>>>>> 80c58362cd792b89ddaf4c472b56a6d8da17c96a
+app.get("/bossreviews", (req, res) => {
+  res.render("bossreviews");
+});
+
 //라우터 연결
 app.use("/api", routes);
 

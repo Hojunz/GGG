@@ -15,16 +15,16 @@ class LaundriesController {
   createLaundry = async (req, res, next) => {
     const { phonenumber, address, image, comment } = req.body;
     const imageFile = req.file.filename;
-    // const User = res.locals.user.id;
+    const User = res.locals.user.id;
     const createLaundryData = await this.laundryService.createLaundry(
       phonenumber,
       address,
       imageFile,
-      comment
-      // User
+      comment,
+      User
     );
 
-    res.status(201).json({ createLaundryData });
+    res.status(201).render("mypage");
   };
 
   // 세탁물 삭제하기

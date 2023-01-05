@@ -10,80 +10,74 @@
     />
     <meta name="generator" content="Hugo 0.104.2" />
     <title>Post Laundry</title>
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/heroes/">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
 
-</head>
-<style>
-    body {
-    color: rgb(0, 0, 0);
-    background-color: rgb(255, 255, 255);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    text-align: center;
+    <link
+      rel="canonical"
+      href="https://getbootstrap.com/docs/5.2/examples/heroes/"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet" />
+  </head>
+  <style>
+    /* body {
+    
+    } */
+    #form {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      width: auto;
+      height: 600px;
     }
-
-    #back-usermypage {
-        margin-top: 11px;
-        color: rgb(255, 255, 255);
+    button {
+      display: inline-block;
+      width: 200px;
+      height: 50px;
+      border: none;
+      border-radius: 25px;
+      background-color: blue;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      outline: none;
     }
-
-    .form-floating1 {
-        margin-top: 15px;
-        color: black;
+    button:hover {
+      background-color: lightblue;
     }
-
-    .form-floating2 {
-        color: black;
+    button:active {
+      background-color: darkblue;
     }
-
-    #laundryicon {
-        width: 12%;
-        margin-bottom: 5px;
+    #postlaundrybutton {
+      margin-top: 20px;
     }
-
-    #laundryicon {
-        transition: all 0.2s linear;
+    input[type="text"] {
+      display: block;
+      width: 300px;
+      height: 30px;
+      border: 1px solid gray;
+      border-radius: 10px;
+      font-size: 14px;
     }
-
-    #laundryicon:hover {
-        transform: scale(1.1);
+    input[type="text"]:focus {
+      border-color: blue;
     }
-
-    a:link {
-        color: rgb(0, 0, 0);
-        text-decoration: none;
+    #postlaundry {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
     }
-
-    a:visited {
-        color: rgb(0, 0, 0);
-        text-decoration: none;
-    }
-
-    a:hover {
-        color: rgb(0, 66, 164);
-    }
-
-    a:active {
-        color: rgb(0, 1, 9);
-        text-decoration: none;
-    }
-
-    #confirms {
-        margin: 0px;
-    }
-
-    #bg-video {
-        position: fixed; right: 0; bottom: 0; 
-        min-width: 100%; min-height: 100%;
-        width: 90%; height: auto; z-index: -100;
-        background: url(polina.jpg) no-repeat;
-        background-size: cover;
-        opacity: 0.25;
+    #login {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
     }
   </style>
 
@@ -94,18 +88,11 @@
         <a class="navbar-brand" href="#">희희세탁</a>
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
           <button
-            onclick="location.href='/login'"
+            onclick="location.href='/api/user/logout'"
             class="btn btn-primary me-md-2"
             type="button"
           >
-            로그인
-          </button>
-          <button
-            onclick="location.href='/signup'"
-            class="btn btn-primary"
-            type="button"
-          >
-            회원가입
+            로그아웃
           </button>
         </div>
       </div>
@@ -114,7 +101,12 @@
     <div id="form">
       <h1>더러운 세탁물을 깨끗히</h1>
 
-      <form action="/postlaundry" method="POST" id="postlaundry">
+      <form
+        action="/api/laundries"
+        method="POST"
+        id="postlaundry"
+        enctype="multipart/form-data"
+      >
         <input type="text" name="phonenumber" placeholder="연락처" required />
         <br />
         <input type="text" name="address" placeholder="주소" required />
@@ -132,40 +124,4 @@
     integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
     crossorigin="anonymous"
   ></script>
-</html>
-
-<body>
-    <video src="/homevideo2" id="bg-video" autoplay muted loop></video>
-    <img id="laundryicon" src="/laundryicon" onclick="location.href='/'">
-    
-<div id="order-form">
-    <form method="POST" action="" >
-    <!-- <h1 id="PleaseSignUp">Please Sign Up</h1> -->
-    <div class="form-floating1">
-        <input type="text" class="form-control" id="signupid" name="phonenumber" placeholder="* 연락처">
-        <label for="floatingInput"></label>
-        <input type="text" class="form-control" id="signupname" name="address" placeholder="* 주소">
-        <label for="floatingInput"></label>
-    </div>
-
-    <div class="form-floating2">
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" placeholder="* 요청사항"></textarea>
-        <label for="floatingInput"></label>
-        <input class="form-control" type="file" id="formFileMultiple" multiple>
-        <label for="floatingPassword"></label>
-    </div>
-
-    <button class="w-100 btn btn-lg btn-primary" type="submit">세탁물 신청</button>
-    <button type="button" id="back-usermypage" class="w-100 btn btn-lg btn-secondary" onclick="location.href='/usermypage'">마이페이지</button>
-    </form>
-</div>
-
-    <p class="mt-5 mb-3 text-muted" id="heeheelaundry">&copy;희희세탁</p>
-</body>
-
-    <script 
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" 
-    integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" 
-    crossorigin="anonymous">
-    </script>
 </html>

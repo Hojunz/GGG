@@ -31,7 +31,7 @@ class UsersController {
       }
 
       const user = await this.userService.createUser(email, nickname, password);
-      res.status(201).render("complete.ejs", { user });
+      res.status(201).render("login");
     } catch (error) {
       if (error.message === "Validation error") {
         res
@@ -68,7 +68,7 @@ class UsersController {
       });
 
       // res.status(200).redirect("/api/user/mypage");
-      res.status(200).redirect("http://localhost:3000/api/user/mypage");
+      res.status(200).render("../views/mypage");
     } catch (error) {
       if (error.message === "Validation error") {
         res

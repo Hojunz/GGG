@@ -44,17 +44,11 @@ class ReviewsController {
   //리뷰 수정
   updateReview = async (req, res, next) => {
     try {
-      const { reviewId, user_id } = req.params;
+      const { reviewId } = req.params;
       const { grade, comment } = req.body;
       const User = res.locals.user.id;
 
-      if (User !== user_id) {
-        res
-          .status(400)
-          .send({ errorMessage: "리뷰를 작성한 유저가 아닙니다!" });
-      }
-
-      await this.reviewService.updateReview(reviewId, grade, comment);
+      await this.reviewService.updateReview(reviewId, grade, comment, User);
 
       res.status(200).send({ message: "리뷰 수정 완료!" });
     } catch (error) {
@@ -65,17 +59,10 @@ class ReviewsController {
   //리뷰 삭제
   deleteReview = async (req, res, next) => {
     try {
-      const { reviewId, user_id } = req.params;
+      const { reviewId } = req.params;
       const User = res.locals.user.id;
 
-      //에러처리
-      if (User !== user_id) {
-        res
-          .status(400)
-          .send({ errorMessage: "리뷰를 작성한 유저가 아닙니다!" });
-      }
-
-      await this.reviewService.deleteReview(reviewId);
+      await this.reviewService.deleteReview(reviewId, User);
       res.status(200).send({ message: "리뷰 삭제 완료!" });
     } catch (error) {
       res.status(444).json({ errorMessage: error.message });
