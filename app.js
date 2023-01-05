@@ -145,6 +145,8 @@ app.get("/bossreviews", (req, res) => {
   res.render("bossreviews");
 });
 
+//-------------------프론트쪽 임시구역-------------------------------------------
+
 //라우터 연결
 app.use("/api", routes);
 

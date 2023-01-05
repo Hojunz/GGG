@@ -4,13 +4,14 @@ class ReviewService {
   reviewRepository = new ReviewRepository();
 
   //리뷰 생성
-  createReview = async (id, grade, comment, user_id, laundry_id) => {
+  createReview = async (grade, comment, user_id, laundry_id, boss_id) => {
     const createReviewData = await this.reviewRepository.createReview(
       id,
       grade,
       comment,
       user_id,
-      laundry_id
+      laundry_id,
+      boss_id
     );
 
     return createReviewData;
@@ -27,6 +28,10 @@ class ReviewService {
       if (!findReview) throw new Error("리뷰가 존재하지 않아요.");
       if (User !== findReview.id) {
         return { errorMessage: error.message };
+      }
+
+      if (User !== findReview.id) {
+        return { errormessage: "작성자가 아닙니다." };
       }
 
       const updateReview = await this.reviewRepository.updateReview(
@@ -66,9 +71,13 @@ class ReviewService {
   };
 
   //리뷰 삭제
-  deleteReview = async (id) => {
+  deleteReview = async (id, User) => {
     const findReview = await this.reviewRepository.findReviewById(id);
     if (!findReview) throw new Error("리뷰가 존재하지 않아요.");
+
+    if (User !== findReview.id) {
+      return { errormessage: "작성자가 아닙니다." };
+    }
 
     await this.reviewRepository.deleteReview(id);
   };

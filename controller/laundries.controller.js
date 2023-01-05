@@ -50,15 +50,22 @@ class LaundriesController {
   updateLaundry = async (req, res, next) => {
     try {
       const { laundryId } = req.params;
-      const isAdmin = res.locals.boss.isAdmin;
       const bossId = res.locals.boss.id;
 
-      await this.laundryService.updateLaundry(laundryId, bossId);
+      const hoho = await this.laundryService.updateLaundry(laundryId, bossId);
 
-      res.status(201).send({ message: "세탁물 상태가 변경되었습니다!" });
+      if (hoho.message) {
+        return res.json({ message: hoho.message });
+      }
+
+      res.status(202).send({ message: " 호호없음 작동 " });
     } catch (error) {
       res.status(444).json({ errorMessage: error.message });
     }
+
+    // if(hoho.message) {
+    //   return res.json({message: hoho.message})
+    // }
   };
 
   // 전체 세탁물 조회 (사장님 전용)

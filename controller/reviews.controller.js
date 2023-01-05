@@ -7,7 +7,7 @@ class ReviewsController {
   createReview = async (req, res, next) => {
     try {
       const { grade, comment } = req.body;
-      const { laundryId } = req.params;
+      const { laundryId, bossId } = req.params;
       const User = res.locals.user.id;
 
       if (!grade) {
@@ -17,7 +17,13 @@ class ReviewsController {
         res.status(400).send({ errorMessage: "내용을 입력해주세요!" });
       }
 
-      await this.reviewService.createReview(grade, comment, User, laundryId);
+      await this.reviewService.createReview(
+        grade,
+        comment,
+        User,
+        laundryId,
+        bossId
+      );
 
       res.status(201).send({ message: "리뷰 작성 완료!" });
     } catch (error) {
@@ -49,6 +55,16 @@ class ReviewsController {
       const User = res.locals.user.id;
 
       await this.reviewService.updateReview(reviewId, grade, comment, User);
+      const huhu = await this.reviewService.updateReview(
+        reviewId,
+        grade,
+        comment,
+        User
+      );
+
+      if (huhu.errormessage) {
+        return res.json({ errormessage: huhu.errormessage });
+      }
 
       res.status(200).send({ message: "리뷰 수정 완료!" });
     } catch (error) {
@@ -63,6 +79,13 @@ class ReviewsController {
       const User = res.locals.user.id;
 
       await this.reviewService.deleteReview(reviewId, User);
+      res.status(200).send({ message: "리뷰 삭제 완료!" });
+      const hihi = await this.reviewService.deleteReview(reviewId, User);
+
+      if (hihi.errormessage) {
+        return res.json({ errormessage: hihi.errormessage });
+      }
+
       res.status(200).send({ message: "리뷰 삭제 완료!" });
     } catch (error) {
       res.status(444).json({ errorMessage: error.message });

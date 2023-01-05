@@ -8,7 +8,8 @@ class BossesController {
   //회원가입입니다.~~~
   createBoss = async (req, res, next) => {
     try {
-      const { email, nickname, password, confirmpassword, phonenumber} = req.body;
+      const { email, nickname, password, confirmpassword, phonenumber } =
+        req.body;
 
       //비밀번호 확인
       if (password !== confirmpassword) {
@@ -23,7 +24,7 @@ class BossesController {
       await this.bossService.createBoss(email, nickname, password, phonenumber);
 
       // res.status(201).send({ message: "회원가입에 성공하였습니다." });
-      res.status(201).render('../views/loginboss')
+      res.status(201).render("../views/loginboss");
     } catch (error) {
       res.status(400).json({ errormessage: error.message });
     }
@@ -41,15 +42,18 @@ class BossesController {
       }
 
       // res.send({token: jwt.sign({id: user.userId}, secretKey, option)})
-      const token = jwt.sign({ id: boss.id, isAdmin: boss.isAdmin }, secretKey2, option);
+      const token = jwt.sign(
+        { id: boss.id, isAdmin: boss.isAdmin },
+        secretKey2,
+        option
+      );
 
       res.cookie("x_auth", token, {
         httpOnly: true,
         maxAge: 0.5 * 60 * 60 * 1000,
       });
       // res.status(200).json({ result: "success", token: token });
-      res.status(200).render('../views/boss')
-
+      res.status(200).render("../views/boss");
     } catch (error) {
       res.status(400).json({ errormessage: error.message });
     }
