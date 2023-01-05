@@ -6,13 +6,11 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.104.2">
-    <title>희희세탁 로그인</title>
+    <title>Post Laundry</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/heroes/">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 
 </head>
 <style>
@@ -27,10 +25,9 @@
     text-align: center;
     }
 
-    .signup {
-        font-weight: 700;
+    #back-usermypage {
         margin-top: 11px;
-        color: black;
+        color: rgb(255, 255, 255);
     }
 
     .form-floating1 {
@@ -43,9 +40,9 @@
     }
 
     #laundryicon {
-        width: 12%;
-        margin-top: 20px;
-        margin-bottom: 7px;
+        width: 10%;
+        margin-bottom: 10px;
+        margin-top: 17px;
     }
 
     #laundryicon {
@@ -75,7 +72,7 @@
         text-decoration: none;
     }
 
-    #login_confirm {
+    #confirms {
         margin: 0px;
     }
 
@@ -87,51 +84,35 @@
         background-size: cover;
         opacity: 0.25;
     }
-
-    #checkbox {
-        padding: 0px;
-    }
-
-    #bossOrUser {
-        font-weight: 700;
-        font-size: 20px;
-    }
-
 </style>
 
 <body>
-    <video src="/homevideo2" id="bg-video" autoplay muted loop></video>
     <img id="laundryicon" src="/laundryicon" onclick="location.href='/'">
-    <form method="POST" id="login" action="/api/boss/login">
-        <h1>Please login</h1>
+
+    <div id="order-form">
+        <form method="POST" action="" >
         <div class="form-floating1">
-            <input type="id" class="form-control" id="floatingInput" name="email" placeholder="아이디">
+            <!-- <input type="text" class="form-control" id="signupid" name="title" placeholder="* 제목">
+            <label for="floatingInput"></label> -->
+            <input type="text" class="form-control" id="signupname" name="rating" placeholder="* 별점">
             <label for="floatingInput"></label>
         </div>
+
         <div class="form-floating2">
-            <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="비밀번호">
-            <label for="floatingPassword"></label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" name="comment" rows="5" placeholder="* 리뷰"></textarea>
+            <label for="floatingInput"></label>
         </div>
-        <button class="w-100 btn btn-lg btn-primary" type="submit">로그인</button>
-        <a href="/signupboss">
-        <p class="signup">Sign Up</p>
-        </a>
-    </form>
 
-    <!-- 하단  -->
-    <p id="bossOrUser">사장님 로그인 페이지입니다</p>
-    <div id="checkbox" class="form-check">
-    <button type="button" class="btn btn-primary btn-sm" onclick="location.href='/login'" >손님으로 로그인하기</button>
+        <button class="w-100 btn btn-lg btn-primary" type="submit" >리뷰 작성</button>
+        <button type="button" id="back-usermypage" class="w-100 btn btn-lg btn-secondary" onclick="location.href='/usermypage'">마이페이지</button>
+        </form>
     </div>
-    <br>
-    <p id="heeheelaundry" class="mt-5 mb-3 text-muted">&copy;희희세탁</p>
-    <!-- 하단  -->
-
+    <p class="mt-5 mb-3 text-muted" id="heeheelaundry">&copy;희희세탁</p>
 </body>
 
-<script 
-src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" 
-integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" 
-crossorigin="anonymous">
-</script>
+    <script 
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" 
+    crossorigin="anonymous">
+    </script>
 </html>
