@@ -8,6 +8,7 @@ const dotenv = require("dotenv");
 const jwt = require("jsonwebtoken");
 const { readSync } = require("fs");
 const { sequelize } = require("./models");
+const fs = require("fs");
 
 const routes = require("./routes");
 
@@ -17,10 +18,6 @@ dotenv.config(); // process.env
 
 const app = express();
 app.set("port", process.env.PORT || 3000);
-
-// html 템플릿 엔진 -> ejs로 변경
-// app.set("view engine", "html");
-// nunjucks.configure("views", { express: app, watch: true });
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
@@ -50,6 +47,58 @@ app.use(
 
 //라우터 연결
 app.use("/api", routes);
+
+// -------------------프론트쪽 임시구역-------------------------------------------
+// app.get("/", (req, res) => {
+//   res.render("index");
+// });
+
+// app.get("/homeimg", (req, res) => {
+//   fs.readFile(__dirname + "/public/images/homePng4.png", (err, data) => {
+//     if (err) {
+//       return res.send("Error Occured");
+//     }
+//     res.writeHead(200, { "Content-Type": "image/png" });
+//     res.end(data);
+//   });
+// });
+
+// app.get("/homeicon", (req, res) => {
+//   fs.readFile(__dirname + "/public/images/laundry.jpg", (err, data) => {
+//     if (err) {
+//       return res.send("Error Occured");
+//     }
+//     res.writeHead(200, { "Content-Type": "image/jpg" });
+//     res.end(data);
+//   });
+// });
+
+// app.get("/homevideo", (req, res) => {
+//   fs.readFile(__dirname + "/public/images/video.mp4", (err, data) => {
+//     if (err) {
+//       return res.send("Error Occured");
+//     }
+//     res.writeHead(200, { "Content-Type": "video/mp4" });
+//     res.end(data);
+//   });
+// });
+
+// app.get("/login", (req, res) => {
+//   res.render("login");
+// });
+
+// app.get("/signup", (req, res) => {
+//   res.render("signup");
+// });
+
+// app.get("/postlaundry", (req, res) => {
+//   res.render("postlaundry");
+// });
+
+// app.get("/boss", async (req, res) => {
+//   res.render("boss");
+// });
+//-------------------프론트쪽 임시구역-------------------------------------------
 
 // 페이지 없을 시 에러 처리
 app.use((req, res, next) => {

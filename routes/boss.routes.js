@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const indexMiddleware = require("../middlewares/index");
+const bossMiddleware = require("../middlewares/boss");
 
 const BossesController = require("../controller/bosses.controller");
 const bossescontroller = new BossesController();
@@ -9,10 +9,15 @@ router.post("/signup", bossescontroller.createBoss); // 회원가입
 router.post("/login", bossescontroller.loginBoss); // 로그인
 
 // 사용자 인증 미들웨어 추가
-router.use(indexMiddleware, (req, res, next) => {
+router.use(bossMiddleware, (req, res, next) => {
   next();
 });
 
-router.post("/logout", bossescontroller.logoutBoss); // 로그아웃
+// 로그인 검사 (이 코드가 없어서 사장님 로그아웃 가능해서 주석 처리)
+router.get("/me", bossMiddleware, async (req, res) => {
+  res.json({ boss: res.locals.boss });
+});
+
+router.post("/logout", bossescontroller.logoutBoss);
 
 module.exports = router;

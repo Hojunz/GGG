@@ -47,35 +47,47 @@ class LaundryService {
 
   // 세탁물 상태 변경
   updateLaundry = async (laundryId, bossId, isAdmin) => {
-    const findLaundry = await this.laundryRepository.findLaundryById(laundryId);
-    if (!findLaundry) throw new Error("세탁물이 존재하지 않아요.");
-    if (!isAdmin) {
-      return { errormessage: "권한이 없습니다." };
-    }
-    const Laundryupdate = await this.laundryRepository.updateLaundry(laundryId);
+    try {
+      const findLaundry = await this.laundryRepository.findLaundryById(
+        laundryId
+      );
 
-    if (Laundryupdate.status === "대기중") {
-      Laundryupdate.status = "접수완료";
-      Laundryupdate.boss_id = bossId;
-      await this.laundryRepository.updateLaundry(laundryId);
-      return { message: "접수가 완료되었습니다" };
+      if (!findLaundry) throw new Error("세탁물이 존재하지 않아요.");
+
+      if (!isAdmin) {
+        return { errormessage: "권한이 없습니다." };
+      }
+
+      if (findLaundry.status === "대기중") {
+        findLaundry.status = "접수완료";
+        findLaundry.boss_id = bossId;
+        await this.laundryRepository.updateLaundry(findLaundry);
+
+        return { message: "접수가 완료되었습니다" };
+      }
+      if (findLaundry.status === "접수완료") {
+        findLaundry.status = "수거완료";
+        await this.laundryRepository.updateLaundry(findLaundry);
+
+        return { message: "수거 완료" };
+      }
+      if (findLaundry.status === "수거완료") {
+        findLaundry.status = "배송중";
+        await this.laundryRepository.updateLaundry(findLaundry);
+
+        return { message: "배송중 입니다." };
+      }
+      if (findLaundry.status === "배송중") {
+        findLaundry.status = "배송완료";
+        await this.laundryRepository.updateLaundry(findLaundry);
+
+        return { message: "배송 완료" };
+      }
+
+      return { errormessage: "상태변경이 더이상 불가능합니다." };
+    } catch (err) {
+      return { errormessage: "서비스 오류" };
     }
-    if (Laundryupdate.status === "접수완료") {
-      Laundryupdate.status = "수거완료";
-      await this.laundryRepository.updateLaundry(laundryId);
-      return { message: "수거 완료" };
-    }
-    if (Laundryupdate.status === "수거완료") {
-      Laundryupdate.status = "배송중";
-      await this.laundryRepository.updateLaundry(laundryId);
-      return { message: "배송중입니다." };
-    }
-    if (Laundryupdate.status === "수거완료") {
-      Laundryupdate.status = "배송완료";
-      await this.laundryRepository.updateLaundry(laundryId);
-      return { message: "배송 완료" };
-    }
-    return { message: "상태변경이 더이상 불가능합니다." };
   };
 
   // 전체 세탁물 조회 (사장님 전용)

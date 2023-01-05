@@ -35,6 +35,12 @@ class UserService {
       updatedAt: login.updatedAt,
     };
   };
+
+  // 유저 찾기
+  findUser = async (id) => {
+    const user = await this.userRepository.findUser(id);
+    return user;
+  };
 }
 
 module.exports = UserService;

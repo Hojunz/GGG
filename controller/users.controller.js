@@ -9,6 +9,7 @@ class UsersController {
   createUser = async (req, res, next) => {
     try {
       const { email, nickname, password, confirmpassword } = req.body;
+      const existsEmail = await this.userService.findUser(email);
 
       //비밀번호 확인
       if (password !== confirmpassword) {
@@ -20,9 +21,16 @@ class UsersController {
         return res.status(400).send({ errorMessage: "닉네임 포함 NO" });
       }
 
+      // 이메일 존재 여부
+      if (email == existsEmail) {
+        return res.status(400).send({ errorMessage: "중복되는 이메일입니다." });
+      }
+
+      // 닉네임 존재 여부
+
       await this.userService.createUser(email, nickname, password);
 
-      res.status(201).send({ message: "회원가입에 성공하였습니다." });
+      res.status(201).render("complete.ejs", { nickname: nickname });
     } catch (error) {
       res.status(400).json({ errormessage: error.message });
     }
@@ -46,6 +54,7 @@ class UsersController {
         httpOnly: true,
         maxAge: 0.5 * 60 * 60 * 1000,
       });
+
       res.status(200).json({ result: "success", token: token });
     } catch (error) {
       res.status(400).json({ errormessage: error.message });
