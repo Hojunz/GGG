@@ -46,21 +46,19 @@ class LaundryService {
   };
 
   // 세탁물 상태 변경
-  updateLaundry = async (laundryId, bossId, isAdmin) => {
+  updateLaundry = async (laundryId, bossId) => {
     try {
         const findLaundry = await this.laundryRepository.findLaundryById(laundryId);
  
         if (!findLaundry) throw new Error("세탁물이 존재하지 않아요.");
-
-        if(!isAdmin) {
-          return {errormessage: "권한이 없습니다."}
-        }
     
         if (findLaundry.status === '대기중') {
           findLaundry.status = '접수완료'
           findLaundry.boss_id = bossId
           await this.laundryRepository.updateLaundry(findLaundry);
-
+          
+          await this.laundryRepository.moveMoney(laundryId)
+          
           return {message: "접수가 완료되었습니다"}
         }
         if (findLaundry.status === '접수완료') {
@@ -95,7 +93,7 @@ class LaundryService {
   // 전체 세탁물 조회 (사장님 전용)
   findAllLaundries = async (req, res, next) => {
     // boss 여부 확인 (isBusiness 컬럼 추가 필요)
-    // const boss = await this.laundryRepository.findLaundryById(id);
+    // const boss = await this.laundryRepository.findBossById(id);
     // if (!boss.isBusiness) {
     //   return { errorMessage: "보스만 접근가능합니다" }
     // }

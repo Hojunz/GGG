@@ -94,7 +94,7 @@ app.get('/homevideo', (req, res) => {
 });
 
 app.get('/homevideo2', (req, res) => {
-  fs.readFile(__dirname + '/public/images/video3.mp4', (err, data) => {
+  fs.readFile(__dirname + '/public/images/video2.mp4', (err, data) => {
     if (err) {
       return res.send('Error Occured');
     }

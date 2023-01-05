@@ -32,9 +32,8 @@ class LaundriesController {
     try {
       const { laundryId } = req.params;
       const bossId = res.locals.boss.id;
-      const isAdmin = res.locals.boss.isAdmin;
 
-      await this.laundryService.updateLaundry(laundryId, bossId, isAdmin);
+      await this.laundryService.updateLaundry(laundryId, bossId);
 
       res.status(201).send({ message: "세탁물 상태가 변경되었습니다!" });
     } catch (error) {
