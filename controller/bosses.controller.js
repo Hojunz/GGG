@@ -22,7 +22,8 @@ class BossesController {
 
       await this.bossService.createBoss(email, nickname, password, phonenumber);
 
-      res.status(201).send({ message: "회원가입에 성공하였습니다." });
+      // res.status(201).send({ message: "회원가입에 성공하였습니다." });
+      res.status(201).render('../views/loginboss')
     } catch (error) {
       res.status(400).json({ errormessage: error.message });
     }
@@ -46,7 +47,9 @@ class BossesController {
         httpOnly: true,
         maxAge: 0.5 * 60 * 60 * 1000,
       });
-      res.status(200).json({ result: "success", token: token });
+      // res.status(200).json({ result: "success", token: token });
+      res.status(200).render('../views/boss')
+
     } catch (error) {
       res.status(400).json({ errormessage: error.message });
     }

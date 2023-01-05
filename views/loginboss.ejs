@@ -44,7 +44,7 @@
 
     #laundryicon {
         width: 12%;
-        margin-top: 12px;
+        margin-top: 20px;
         margin-bottom: 7px;
     }
 
@@ -102,7 +102,7 @@
 <body>
     <video src="/homevideo2" id="bg-video" autoplay muted loop></video>
     <img id="laundryicon" src="/laundryicon" onclick="location.href='/'">
-    <form method="POST" id="login" action="">
+    <form method="POST" id="login" action="/api/boss/login">
         <h1>Please login</h1>
         <div class="form-floating1">
             <input type="id" class="form-control" id="floatingInput" name="email" placeholder="아이디">
