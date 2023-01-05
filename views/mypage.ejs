@@ -115,8 +115,8 @@
         </div>
 
         <p>
-          <a href="#" class="btn btn-primary btn-lg my-2" onclick="location.href='/postlaundry'" >세탁 신청하러 가기</a>
-          <a href="#" class="btn btn-secondary btn-lg my-2">내가 쓴 리뷰 보기</a>
+          <a class="btn btn-primary btn-lg my-2" onclick="location.href='/postlaundry'" >세탁 신청하러 가기</a>
+          <a class="btn btn-secondary btn-lg my-2" onclick="location.href='/userreviews'">내가 쓴 리뷰 보기</a>
         </p>    
       </div>
     </div>
@@ -132,7 +132,7 @@
           <div class="card shadow-sm">
 
             <img src="/laundryimage">
-
+            
             <div class="card-body">
               <p class="card-text">요청사항: 깨끗하게 해주세요 (예시 목록입니다)</p>
               <p class="card-text">신청자: 푸드리</p>
@@ -145,7 +145,7 @@
                   class="btn btn-sm btn-outline-secondary" 
                   data-bs-toggle="modal" 
                   data-bs-target="#exampleModal" 
-                  data-bs-whatever="@fat">리뷰 쓰기</button>
+                  data-bs-whatever="@fat" onclick="location.href='/postreview'" >리뷰 쓰기</button>
                 </div>
                 <small class="text-muted">배송중</small>
                 <small class="text-muted">2022-12-20</small>
@@ -207,34 +207,6 @@
       </div>
     </div>
   </div>
-
-<!-- 리뷰 쓰기 모달창  -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-    </div>
-        <div class="modal-body">
-          <form>
-            <div class="mb-3">
-              <label for="recipient-name" class="col-form-label">Recipient:</label>
-              <input type="text" class="form-control" id="recipient-name">
-            </div>
-            <div class="mb-3">
-              <label for="message-text" class="col-form-label">Message:</label>
-              <textarea class="form-control" id="message-text"></textarea>
-            </div>
-          </form>
-        </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Send message</button>
-      </div>
-    </div>
-  </div>
-</div>
 
 </main>
     <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
