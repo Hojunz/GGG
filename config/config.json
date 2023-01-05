@@ -1,8 +1,8 @@
 {
   "development": {
     "username": "root",
-    "password": "930523",
-    "database": "heehee_laundry_main",
+    "password": "Password1!",
+    "database": "hhst",
     "host": "127.0.0.1",
     "dialect": "mysql",
     "logging": false
