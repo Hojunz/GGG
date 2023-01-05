@@ -140,8 +140,16 @@ app.get('/postlaundry', (req, res) => {
   res.render('postlaundry')
 })
 
+app.get('/usermypage/reviews', (req, res) => {
+  res.render('userreviews')
+})
+
 app.get('/boss', (req, res) => {
   res.render('boss')
+})
+
+app.get('/boss/reviews', (req, res) => {
+  res.render('bossreviews')
 })
 //-------------------프론트쪽 임시구역-------------------------------------------
 //-------------------프론트쪽 임시구역-------------------------------------------
