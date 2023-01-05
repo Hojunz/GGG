@@ -12,12 +12,6 @@ class UserRepository {
 
     return user;
   };
-
-  // 유저 찾기
-  findUser = async (id) => {
-    const user = await User.findbyPk(id);
-    return user;
-  };
 }
 
 module.exports = UserRepository;

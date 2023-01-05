@@ -9,32 +9,43 @@ class UsersController {
   createUser = async (req, res, next) => {
     try {
       const { email, nickname, password, confirmpassword } = req.body;
-      const existsEmail = await this.userService.findUser(email);
 
       //비밀번호 확인
       if (password !== confirmpassword) {
-        res.status(400).send({ errorMessage: "패스워드가 일치하지 않습니다." });
-        return;
+        res
+          .writeHead(400, { "Content-Type": "text/html;charset=UTF-8" })
+          .write(
+            "<script>alert('비밀번호가 일치하지 않습니다.'); history.back()</script>"
+          );
+        res.end();
+        //.render("alert", { error: "비밀번호가 일치하지 않습니다." }); // alert 페이지로 렌더링하는 방법
       }
       // 닉네임 포함여부
-      if (password.includes(nickname) == true) {
-        return res.status(400).send({ errorMessage: "닉네임 포함 NO" });
+      if (password.includes(nickname)) {
+        res
+          .writeHead(400, { "Content-Type": "text/html;charset=UTF-8" })
+          .write(
+            "<script>alert('비밀번호에 닉네임이 포함되어 있습니다.'); history.back()</script>"
+          );
+        res.end();
       }
 
-      // 이메일 존재 여부
-      if (email == existsEmail) {
-        return res.status(400).send({ errorMessage: "중복되는 이메일입니다." });
-      }
-
-      // 닉네임 존재 여부
-
-      await this.userService.createUser(email, nickname, password);
-
-      res.status(201).render("complete.ejs", { nickname: nickname });
+      const user = await this.userService.createUser(email, nickname, password);
+      res.status(201).render("complete.ejs", { user });
     } catch (error) {
-      res.status(400).json({ errormessage: error.message });
+      if (error.message === "Validation error") {
+        res
+          .writeHead(400, { "Content-Type": "text/html;charset=UTF-8" })
+          .write(
+            "<script>alert('중복된 아이디나 닉네임이 있습니다.'); history.back()</script>"
+          );
+        res.end();
+      } else {
+        res.status(400).json({ errormessage: error.message });
+      }
     }
   };
+
   //로그인 입니다.
   loginUser = async (req, res, next) => {
     try {
@@ -43,11 +54,12 @@ class UsersController {
 
       if (email !== user.email || password !== user.password) {
         res
-          .status(400)
-          .send({ errorMessage: "이메일 또는 패스워드를 확인해주세요." });
+          .writeHead(400, { "Content-Type": "text/html;charset=UTF-8" })
+          .write(
+            "<script>alert('이메일 또는 패스워드를 확인해주세요.'); history.back()</script>"
+          );
       }
 
-      // res.send({token: jwt.sign({id: user.userId}, secretKey, option)})
       const token = jwt.sign({ id: user.userId }, secretKey, option);
 
       res.cookie("x_auth", token, {
@@ -55,9 +67,16 @@ class UsersController {
         maxAge: 0.5 * 60 * 60 * 1000,
       });
 
-      res.status(200).json({ result: "success", token: token });
+      // res.status(200).redirect("/api/user/mypage");
+      res.status(200).redirect("http://localhost:3000/api/user/mypage");
     } catch (error) {
-      res.status(400).json({ errormessage: error.message });
+      if (error.message === "Validation error") {
+        res
+          .status(404)
+          .json({ errorMessage: "중복된 이메일 또는 닉네임이 있습니다." });
+      } else {
+        res.status(400).json({ errormessage: error.message });
+      }
     }
   };
   //로그인 확인 입니다.

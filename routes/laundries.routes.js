@@ -9,16 +9,16 @@ const LaundriesController = require("../controller/laundries.controller");
 const laundriesController = new LaundriesController();
 
 // 세탁물 신청 폼
-// router.get("/order", async (req, res) => {
-//   res.render("order.ejs", { title: "세탁물 신청하기" });
-// });
+router.get("/order", async (req, res) => {
+  res.render("postlaundry.ejs");
+});
 
 // multer setting (세탁물 이미지 업로드 기능)
 const upload = multer({
   storage: multer.diskStorage({
     // set a localstorage destination
     destination: (req, file, cb) => {
-      cb(null, "public/upload/");
+      cb(null, "../public/upload");
     },
     // convert a file name
     filename: (req, file, cb) => {
