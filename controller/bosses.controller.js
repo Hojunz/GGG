@@ -56,7 +56,7 @@ class BossesController {
   };
 
   //로그아웃입니다.
-  logoutBoss = async (req, res, next) => {
+  logoutBoss = async (req, res, next) => { 
     res.clearCookie("x_auth");
     return res.status(200).send({ message: "로그아웃 완료" });
   };

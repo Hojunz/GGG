@@ -7,7 +7,7 @@ class ReviewsController {
   createReview = async (req, res, next) => {
     try {
       const { grade, comment } = req.body;
-      const { laundryId } = req.params;
+      const { laundryId, bossId } = req.params;
       const User = res.locals.user.id;
 
       if (!grade) {
@@ -17,7 +17,7 @@ class ReviewsController {
         res.status(400).send({ errorMessage: "내용을 입력해주세요!" });
       }
 
-      await this.reviewService.createReview(grade, comment, User, laundryId);
+      await this.reviewService.createReview(grade, comment, User, laundryId, bossId);
 
       res.status(201).send({ message: "리뷰 작성 완료!" });
     } catch (error) {
@@ -44,17 +44,15 @@ class ReviewsController {
   //리뷰 수정
   updateReview = async (req, res, next) => {
     try {
-      const { reviewId, user_id } = req.params;
+      const { reviewId } = req.params;
       const { grade, comment } = req.body;
       const User = res.locals.user.id;
 
-      if (User !== user_id) {
-        res
-          .status(400)
-          .send({ errorMessage: "리뷰를 작성한 유저가 아닙니다!" });
-      }
+      const huhu = await this.reviewService.updateReview(reviewId, grade, comment, User);
 
-      await this.reviewService.updateReview(reviewId, grade, comment);
+      if(huhu.errormessage) {
+        return res.json({errormessage: huhu.errormessage})
+       }
 
       res.status(200).send({ message: "리뷰 수정 완료!" });
     } catch (error) {
@@ -65,18 +63,16 @@ class ReviewsController {
   //리뷰 삭제
   deleteReview = async (req, res, next) => {
     try {
-      const { reviewId, user_id } = req.params;
+      const { reviewId } = req.params;
       const User = res.locals.user.id;
 
-      //에러처리
-      if (User !== user_id) {
-        res
-          .status(400)
-          .send({ errorMessage: "리뷰를 작성한 유저가 아닙니다!" });
-      }
+      const hihi = await this.reviewService.deleteReview(reviewId, User);
 
-      await this.reviewService.deleteReview(reviewId);
-      res.status(200).send({ message: "리뷰 삭제 완료!" });
+      if(hihi.errormessage) {
+        return res.json({errormessage: hihi.errormessage})
+       }
+
+       res.status(200).send({ message: "리뷰 삭제 완료!" });
     } catch (error) {
       res.status(444).json({ errorMessage: error.message });
     }
