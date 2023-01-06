@@ -67,13 +67,19 @@ class UsersController {
         maxAge: 0.5 * 60 * 60 * 1000,
       });
 
-      // res.status(200).redirect("/api/user/mypage");
-      res.status(200).render("../views/mypage");
+      res.redirect("http://localhost:3000/mypage");
     } catch (error) {
       if (error.message === "Validation error") {
         res
           .status(404)
           .json({ errorMessage: "중복된 이메일 또는 닉네임이 있습니다." });
+      }
+      if (error.message === "Cannot read properties of null (reading 'id')") {
+        res
+          .writeHead(400, { "Content-Type": "text/html;charset=UTF-8" })
+          .write(
+            "<script>alert('이메일 또는 닉네임을 확인해주세요.'); history.back()</script>"
+          );
       } else {
         res.status(400).json({ errormessage: error.message });
       }
