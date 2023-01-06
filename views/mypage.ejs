@@ -104,7 +104,7 @@
           data: {},
           success: function (response) {
             alert("로그아웃 완료!");
-            location.href = "/loginboss";
+            location.href = "/login";
           },
           error: function (error) {
             alert("로그아웃에 실패하였습니다.");
@@ -213,7 +213,7 @@
           <button
             class="btn btn-primary"
             type="submit"
-            onclick="location.href='/'"
+            onclick="logoutUser()"
           >
             로그아웃
           </button>

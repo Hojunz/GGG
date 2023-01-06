@@ -112,7 +112,7 @@
           data: {},
           success: function (response) {
             alert("로그아웃 완료!");
-            location.href = "/loginboss";
+            location.href = "/login";
           },
           error: function (error) {
             alert("로그아웃에 실패하였습니다.");
@@ -204,11 +204,7 @@
           <a href="/" class="navbar-brand d-flex align-items-center">
             <strong id="header-title">희희세탁</strong>
           </a>
-          <button
-            class="btn btn-primary"
-            type="submit"
-            onclick="location.href='/'"
-          >
+          <button class="btn btn-primary" type="submit" onclick="logoutUser()">
             로그아웃
           </button>
         </div>
@@ -234,7 +230,7 @@
               >
               <a
                 class="btn btn-secondary btn-lg my-2"
-                onclick="location.href='/usermypage'"
+                onclick="location.href='/mypage'"
                 >마이페이지</a
               >
             </p>
