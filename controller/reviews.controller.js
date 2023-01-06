@@ -7,7 +7,7 @@ class ReviewsController {
   createReview = async (req, res, next) => {
     try {
       const { grade, comment } = req.body;
-      const { laundryId, bossId } = req.params;
+      const { laundryId } = req.params;
       const User = res.locals.user.id;
 
       if (!grade) {
@@ -17,15 +17,10 @@ class ReviewsController {
         res.status(400).send({ errorMessage: "내용을 입력해주세요!" });
       }
 
-      await this.reviewService.createReview(
-        grade,
-        comment,
-        User,
-        laundryId,
-        bossId
-      );
+      await this.reviewService.createReview(grade, comment, laundryId, User);
 
-      res.status(201).send({ message: "리뷰 작성 완료!" });
+      // res.redirect("/api/laundry/1/reviews");
+      res.render("userreviews");
     } catch (error) {
       res.status(444).json({ errorMessage: error.message });
     }

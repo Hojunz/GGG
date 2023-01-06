@@ -24,7 +24,7 @@ class LaundriesController {
       User
     );
 
-    res.status(201).render("mypage");
+    res.redirect("/mypage");
   };
 
   // 세탁물 삭제하기

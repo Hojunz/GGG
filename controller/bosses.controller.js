@@ -53,7 +53,7 @@ class BossesController {
         maxAge: 0.5 * 60 * 60 * 1000,
       });
       // res.status(200).json({ result: "success", token: token });
-      res.status(200).render("../views/boss");
+      res.redirect("/boss");
     } catch (error) {
       res.status(400).json({ errormessage: error.message });
     }

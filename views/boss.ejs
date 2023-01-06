@@ -155,7 +155,6 @@
                                           <div class="btn-group">
                                               <button type="button" class="btn btn-sm btn-outline-secondary" onclick="change(${id})">${status}</button>
                                           </div>
-                                          <small class="text-muted">수거 전</small>
                                           <small class="text-muted">${createdAt}</small>
                                         </div>
                                       </div>
@@ -227,6 +226,12 @@
       <div class="col-lg-6 col-md-8 mx-auto">
         <div id="boss-infoma">
         </div>
+      </div>
+      <p>
+        <a class="btn btn-primary btn-lg my-2" onclick="location.href='/boss'">세탁신청 목록</a>
+        <a class="btn btn-secondary btn-lg my-2" onclick="location.href='/bossreviews'">리뷰 보기</a>
+      </p>
+    </div>
       </section>
 
       <!-- 목록구역 -->
@@ -236,12 +241,7 @@
             class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3"
             id="card-box"
           ></div>
-        </div>
-        <p>
-          <a class="btn btn-primary btn-lg my-2" onclick="location.href='/boss'">세탁신청 목록</a>
-          <a class="btn btn-secondary btn-lg my-2" onclick="location.href='/bossreviews'">리뷰 보기</a>
-        </p>
-      </div>
+        
     </main>
     <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
     <script

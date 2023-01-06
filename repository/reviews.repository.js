@@ -2,17 +2,15 @@ const { Review, Laundry } = require("../models");
 
 class ReviewRepository {
   //리뷰등록
-  createReview = async (grade, comment, user_id, laundry_id, boss_id) => {
+  createReview = async (grade, comment, laundry_id, user_id) => {
     //  const boss = await Review.findAll({include:{model: Laundry, attributes: ['boss_id'], where: {id: laundry_id}}})
     //  console.log(boss)
 
     const createReviewData = await Review.create({
-      id,
       grade,
       comment,
-      user_id,
       laundry_id,
-      boss_id,
+      user_id,
     });
     return createReviewData;
   };

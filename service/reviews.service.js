@@ -4,14 +4,12 @@ class ReviewService {
   reviewRepository = new ReviewRepository();
 
   //리뷰 생성
-  createReview = async (grade, comment, user_id, laundry_id, boss_id) => {
+  createReview = async (grade, comment, laundry_id, user_id) => {
     const createReviewData = await this.reviewRepository.createReview(
-      id,
       grade,
       comment,
-      user_id,
       laundry_id,
-      boss_id
+      user_id
     );
 
     return createReviewData;
