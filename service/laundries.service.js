@@ -5,24 +5,34 @@ class LaundryService {
 
   // 내 세탁물 조회 (손님 전용)
   findMyLaundries = async (user_id) => {
-    const allLaundries = await this.laundryRepository.findMyLaundries(user_id);
+    try {
+      const allLaundries = await this.laundryRepository.findMyLaundries(
+        user_id
+      );
 
-    allLaundries.sort((a, b) => {
-      return b.createdAt - a.createdAt;
-    });
+      // if (User !== allLaundries.user_id) {
+      //   return { errormessage: "로그인한 분의 세탁물이 아닙니다." };
+      // }
 
-    return allLaundries.map((laundry) => {
-      return {
-        id: laundry.id,
-        phonenumber: laundry.phonenumber,
-        address: laundry.address,
-        image: laundry.image,
-        comment: laundry.comment,
-        status: laundry.status,
-        createdAt: laundry.createdAt,
-        updatedAt: laundry.updatedAt,
-      };
-    });
+      allLaundries.sort((a, b) => {
+        return b.createdAt - a.createdAt;
+      });
+
+      return allLaundries.map((laundry) => {
+        return {
+          id: laundry.id,
+          phonenumber: laundry.phonenumber,
+          address: laundry.address,
+          image: laundry.image,
+          comment: laundry.comment,
+          status: laundry.status,
+          createdAt: laundry.createdAt,
+          updatedAt: laundry.updatedAt,
+        };
+      });
+    } catch (error) {
+      return { error: errormessage };
+    }
   };
 
   // 세탁물 신청 (손님 전용)
@@ -49,7 +59,9 @@ class LaundryService {
   // 세탁물 상태 변경
   updateLaundry = async (laundryId, bossId) => {
     try {
-      const findLaundry = await this.laundryRepository.findLaundryById(laundryId)
+      const findLaundry = await this.laundryRepository.findLaundryById(
+        laundryId
+      );
 
       if (!findLaundry) throw new Error("세탁물이 존재하지 않아요.");
 
@@ -58,7 +70,7 @@ class LaundryService {
         findLaundry.boss_id = bossId;
         await this.laundryRepository.updateLaundry(findLaundry);
 
-        await this.laundryRepository.moveMoney(laundryId)
+        await this.laundryRepository.moveMoney(laundryId);
 
         return { message: "접수가 완료되었습니다" };
       }

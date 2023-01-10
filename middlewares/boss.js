@@ -28,7 +28,6 @@ module.exports = (req, res, next) => {
     const { id } = jwt.verify(authToken, secretKey2);
     Boss.findByPk(id).then((boss) => {
       res.locals.boss = boss;
-      // console.log(res.locals.user)
       next();
     });
   } catch (err) {

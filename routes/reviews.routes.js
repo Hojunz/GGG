@@ -17,3 +17,4 @@ router.patch("/reviews/:reviewId", reviewsController.updateReview); //수정
 router.delete("/reviews/:reviewId", reviewsController.deleteReview); // 삭제
 
 module.exports = router;
+

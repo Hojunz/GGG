@@ -4,7 +4,7 @@ class Review extends Sequelize.Model{
     static initiate(sequelize){
         Review.init({
             grade:{
-                type: Sequelize.STRING(100),
+                type: Sequelize.INTEGER(100),
                 allowNull: true,
             },
             comment: {

@@ -5,6 +5,7 @@ const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const nunjucks = require("nunjucks");
 const dotenv = require("dotenv");
+const mysql = require("mysql");
 const jwt = require("jsonwebtoken");
 const { readSync } = require("fs");
 const { sequelize } = require("./models");
@@ -23,7 +24,7 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
 sequelize
-  .sync({ force: false })
+  .sync({ alter: true })
   .then(() => {
     console.log("데이터베이스 연결 성공");
   })
@@ -45,6 +46,15 @@ app.use(
     cookie: { httpOnly: true, secure: false },
   })
 );
+
+// const connectionPool = mysql.createPool({
+//   host: process.env.DB_HOST,
+//   user: process.env.DB_USER,
+//   password: process.env.DB_PW,
+//   port: process.env.DB_PORT,
+//   database: process.env.DB_NAME,
+//   insecureAuth: true,
+// });
 
 //-------------------프론트쪽 임시구역-------------------------------------------
 app.get("/", (req, res) => {
