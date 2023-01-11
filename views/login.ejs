@@ -27,6 +27,14 @@
       rel="stylesheet"
     />
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <script>
+      $(document).ready(function () {
+        if (document.cookie) {
+          alert("이미 로그인이 되어있습니다. 마이페이지로 이동합니다.");
+          window.location.replace("/mypage");
+        }
+      });
+    </script>
   </head>
   <style>
     body {

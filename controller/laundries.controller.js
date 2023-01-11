@@ -6,10 +6,8 @@ class LaundriesController {
   // 내 세탁물 조회 (로그인한 회원의 세탁물만)
   findMyLaundries = async (req, res, next) => {
     try {
-      const { user_id } = req.params;
       const User = res.locals.user.id;
       const laundries = await this.laundryService.findMyLaundries(
-        user_id,
         User
       );
 

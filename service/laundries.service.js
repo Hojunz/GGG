@@ -4,11 +4,9 @@ class LaundryService {
   laundryRepository = new LaundryRepository();
 
   // 내 세탁물 조회 (손님 전용)
-  findMyLaundries = async (user_id) => {
+  findMyLaundries = async (User) => {
     try {
-      const allLaundries = await this.laundryRepository.findMyLaundries(
-        user_id
-      );
+      const allLaundries = await this.laundryRepository.findMyLaundries(User);
 
       // if (User !== allLaundries.user_id) {
       //   return { errormessage: "로그인한 분의 세탁물이 아닙니다." };

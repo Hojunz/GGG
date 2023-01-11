@@ -3,7 +3,7 @@ const { sequelize } = require("../models");
 
 class LaundryRepository {
   // 내 세탁물만 조회하기 (회원)
-  findMyLaundries = async (user_id) => {
+  findMyLaundries = async (User) => {
     const laundries = await Laundry.findAll({
       attribute: [
         "phonenumber",
@@ -14,7 +14,7 @@ class LaundryRepository {
         "updatedAt",
         "boss_id",
       ],
-      where: { user_id },
+      where: { user_id: User },
     });
     return laundries;
   };

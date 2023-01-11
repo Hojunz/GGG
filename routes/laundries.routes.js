@@ -23,7 +23,7 @@ const upload = multer({
   }),
 });
 
-router.get("/:user_id", indexMiddleware, laundriesController.findMyLaundries); // 내 세탁물 조회 (손님)
+router.get("/user", indexMiddleware, laundriesController.findMyLaundries); // 내 세탁물 조회 (손님)
 router.post(
   "/",
   upload.single("image"),
